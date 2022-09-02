@@ -1,5 +1,5 @@
 {
-  "name": "plugin",
+  "name": "@leoncik/p14-hrnet-plugin",
   "version": "0.0.1",
   "license": "MIT",
   "scripts": {
@@ -10,9 +10,11 @@
     "@rollup/plugin-node-resolve": "^13.3.0",
     "@rollup/plugin-typescript": "^8.4.0",
     "@types/react": "^18.0.17",
+    "postcss": "^8.4.16",
     "react": "^18.2.0",
     "rollup": "^2.78.1",
     "rollup-plugin-dts": "^4.2.2",
+    "rollup-plugin-postcss": "^4.0.2",
     "tslib": "^2.4.0",
     "typescript": "^4.8.2"
   },
@@ -21,5 +23,8 @@
   "files": [
     "dist"
   ],
-  "types": "dist/index.d.ts"
+  "types": "dist/index.d.ts",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/leoncik"
+  }
 }
