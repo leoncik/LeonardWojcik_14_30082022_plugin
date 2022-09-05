@@ -10,6 +10,7 @@ const SelectMenu = ({label, options}: selectMenuProps) => {
 
   // Refs
   const customButtonRef: any = useRef()
+  const selectedOptionRef: any = useRef()
   const customMenuRef: any = useRef()
 
   const handleTriggerMenu = () => {
@@ -23,14 +24,19 @@ const SelectMenu = ({label, options}: selectMenuProps) => {
     }
   }
 
-  const handleSelectOption = () => {
-    console.log("option selected!");
+  const handleSelectOption = (e: any) => {
+    selectedOptionRef.current.textContent = e.target.textContent;
+    // Close menu if opened
+    if (customButtonRef.current.classList.contains('menu-expanded')) {
+      customButtonRef.current.className = "custom-button menu-unexpanded"
+      customMenuRef.current.className = "menu menu-close"
+    }
   }
 
   return (
     <>
     <span ref={customButtonRef} onClick={handleTriggerMenu} className="custom-button menu-unexpanded ui-selectmenu-button">
-      <span className="custom-button-text">{label}</span>
+      <span ref={selectedOptionRef} className="custom-button-text">{label}</span>
       <span className="custom-button-icon">▼</span>
     </span>
     <div className="menu-wrapper">
