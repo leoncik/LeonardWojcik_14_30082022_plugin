@@ -3,9 +3,10 @@ import "./SelectMenu.css";
 
 export interface selectMenuProps {
   label: string;
+  options: Array<string>;
 }
 
-const SelectMenu = ({label}: selectMenuProps) => {
+const SelectMenu = ({label, options}: selectMenuProps) => {
 
   // Refs
   const customButtonRef: any = useRef()
@@ -22,6 +23,10 @@ const SelectMenu = ({label}: selectMenuProps) => {
     }
   }
 
+  const handleSelectOption = () => {
+    console.log("option selected!");
+  }
+
   return (
     <>
     <span ref={customButtonRef} onClick={handleTriggerMenu} className="custom-button menu-unexpanded ui-selectmenu-button">
@@ -30,9 +35,7 @@ const SelectMenu = ({label}: selectMenuProps) => {
     </span>
     <div className="menu-wrapper">
       <ul ref={customMenuRef} className="menu">
-        <li className="option">Option 1</li>
-        <li className="option">Option 2</li>
-        <li className="option">Option 3</li>
+        {options.map((option: string, index: number) => <li onClick={handleSelectOption} className="menu-item" key={index}>{option}</li> )}
       </ul>
     </div>
     </>)

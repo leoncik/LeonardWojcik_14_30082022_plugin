@@ -41,6 +41,22 @@
 }
 
 .menu {
+	/* Original CSS style from JQuery */
+	width: 256px;
+	border: 1px solid #c5c5c5;
+	overflow: auto;
+  	overflow-x: auto;
+	overflow-x: hidden;
+	padding-bottom: 1px;
+	border-radius: 0 0 3px 3px;
+	background: #ffffff;
+	color: #333333;
+	list-style: none;
+	padding: 0;
+  	padding-bottom: 0px;
+	margin: 0;
+	outline: 0;
+	/* Added CSS */
     display: none;
 }
 
@@ -52,8 +68,17 @@
     display: block;
 }
 
+.menu-item {
+	cursor: pointer;
+}
+.menu-item:hover {
+	background: #007fff;
+	font-weight: normal;
+	color: #ffffff;
+}
+
 /* Original CSS style from JQuery */
-.ui-selectmenu-menu {
+/* .ui-selectmenu-menu {
 	padding: 0;
 	margin: 0;
 	position: absolute;
@@ -92,4 +117,4 @@
 .ui-selectmenu-icon.ui-icon {
 	float: right;
 	margin-top: 0;
-}
+} */

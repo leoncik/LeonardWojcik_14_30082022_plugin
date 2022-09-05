@@ -15,9 +15,11 @@ export const HelloWorld = Template.bind({});
 // More on args: https://storybook.js.org/docs/react/writing-stories/args
 HelloWorld.args = {
   label: "I am a test!",
+  options: ["Alabama", "Alaska", "American Samoa"]
 };
 
 export const ClickMe = Template.bind({});
 ClickMe.args = {
   label: "Click me!",
+  options: ["Only one option here!"]
 };
