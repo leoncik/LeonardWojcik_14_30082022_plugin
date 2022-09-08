@@ -14,7 +14,10 @@ const SelectMenu = ({label, options}: selectMenuProps) => {
   const customMenuRef: any = useRef()
 
   const handleTriggerMenu = () => {
+    triggerMenu()
+  }
 
+  const triggerMenu = () => {
     if (! customButtonRef.current.classList.contains('menu-expanded')) {
       customButtonRef.current.className = "custom-button menu-expanded"
       customMenuRef.current.className = "menu menu-open"
@@ -22,15 +25,21 @@ const SelectMenu = ({label, options}: selectMenuProps) => {
       customButtonRef.current.className = "custom-button menu-unexpanded"
       customMenuRef.current.className = "menu menu-close"
     }
+    
   }
 
   const handleSelectOption = (e: any) => {
+    selectOption(e)
+  }
+
+  const selectOption = (e: any) => {
     selectedOptionRef.current.textContent = e.target.textContent;
     // Close menu if opened
     if (customButtonRef.current.classList.contains('menu-expanded')) {
       customButtonRef.current.className = "custom-button menu-unexpanded"
       customMenuRef.current.className = "menu menu-close"
     }
+    
   }
 
   return (
