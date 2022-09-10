@@ -6,7 +6,9 @@
   "scripts": {
     "build": "rollup -c",
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "build-storybook": "build-storybook",
+    "test": "vitest",
+    "coverage": "vitest run --coverage"
   },
   "keywords": [],
   "author": "",
@@ -23,8 +25,10 @@
     "@storybook/manager-webpack4": "^6.5.10",
     "@storybook/react": "^6.5.10",
     "@storybook/testing-library": "^0.0.13",
+    "@testing-library/react": "^13.4.0",
     "@types/react": "^18.0.18",
     "babel-loader": "^8.2.3",
+    "jsdom": "^20.0.0",
     "postcss": "^8.4.5",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -33,7 +37,8 @@
     "rollup-plugin-postcss": "^4.0.2",
     "rollup-plugin-typescript2": "^0.33.0",
     "rollup-plugin-uglify": "^6.0.4",
-    "typescript": "^4.5.4"
+    "typescript": "^4.5.4",
+    "vitest": "^0.23.2"
   },
   "peerDependencies": {
     "react": "^18.2.0",
