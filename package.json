@@ -59,7 +59,7 @@
     "registry": "https://npm.pkg.github.com/leoncik"
   },
   "lint-staged": {
-    "*.js": "eslint --cache --fix",
-    "*.{js,css,md}": "prettier --write"
+    "*.{tsx,ts}": "eslint --cache --fix",
+    "*.{ts,tsx,css,md}": "prettier --write"
   }
 }
