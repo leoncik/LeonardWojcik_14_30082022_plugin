@@ -1,6 +1,6 @@
 {
   "name": "@leoncik/p14-hrnet-plugin",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "",
   "main": "dist/index.js",
   "scripts": {
@@ -31,6 +31,7 @@
     "@types/react": "^18.0.18",
     "@typescript-eslint/eslint-plugin": "^5.36.2",
     "@typescript-eslint/parser": "^5.36.2",
+    "@vitest/coverage-c8": "^0.23.2",
     "babel-loader": "^8.2.3",
     "eslint": "^8.23.0",
     "eslint-config-prettier": "^8.5.0",

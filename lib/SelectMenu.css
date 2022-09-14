@@ -1,3 +1,7 @@
+.select-menu {
+    position: relative;
+}
+
 /* CUSTOM BUTTON */
 
 .custom-button {
@@ -46,8 +50,9 @@
 
 .menu-wrapper {
     /* original JQuery CSS */
-    top: 94.3937px;
-    left: 22px;
+    /* Todo: set top value dynamically (depending on custom button height) */
+    top: 30px;
+    left: 0;
     display: block;
     padding: 0;
     margin: 0;

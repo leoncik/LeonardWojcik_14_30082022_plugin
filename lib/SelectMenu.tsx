@@ -5,10 +5,10 @@ export interface selectMenuProps {
     label: string;
     options: Array<string>;
     id: string;
-    optionRef: any;
+    inputRef: any;
 }
 
-const SelectMenu = ({ label, id, options, optionRef }: selectMenuProps) => {
+const SelectMenu = ({ label, id, options, inputRef }: selectMenuProps) => {
     // Refs
     const customButtonRef: any = useRef();
     const selectedOptionRef: any = useRef();
@@ -53,14 +53,14 @@ const SelectMenu = ({ label, id, options, optionRef }: selectMenuProps) => {
     };
 
     return (
-        <>
+        <div className="select-menu">
             <span
                 ref={customButtonRef}
                 onClick={handleTriggerMenu}
                 className="custom-button menu-unexpanded ui-selectmenu-button"
             >
                 <span ref={selectedOptionRef} className="custom-button-text">
-                    {label}
+                    {label ? label : firstOption}
                 </span>
                 <span className="custom-button-icon">▼</span>
             </span>
@@ -85,11 +85,11 @@ const SelectMenu = ({ label, id, options, optionRef }: selectMenuProps) => {
                 id={id}
                 style={{ display: 'none' }}
             >
-                <option ref={optionRef} value={selectedOption}>
+                <option ref={inputRef} value={selectedOption}>
                     {selectedOption}
                 </option>
             </select>
-        </>
+        </div>
     );
 };
 
