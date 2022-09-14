@@ -1,11 +1,14 @@
 import React, { useRef, useState } from 'react';
 import './SelectMenu.css';
 
+import '../CustomButton/CustomButton';
+import CustomButton from '../CustomButton/CustomButton';
+
 export interface selectMenuProps {
-    label: string;
     options: Array<string>;
-    id: string;
-    inputRef: any;
+    label?: string;
+    id?: string;
+    inputRef?: any;
 }
 
 const SelectMenu = ({ label, id, options, inputRef }: selectMenuProps) => {
@@ -21,22 +24,6 @@ const SelectMenu = ({ label, id, options, inputRef }: selectMenuProps) => {
 
     // Local states
     const [selectedOption, setSelectedOption] = useState(firstOption);
-
-    const handleTriggerMenu = () => {
-        triggerMenu();
-    };
-
-    const triggerMenu = () => {
-        if (!customButtonRef.current.classList.contains('menu-expanded')) {
-            customButtonRef.current.className = 'custom-button menu-expanded';
-            customMenuRef.current.className = 'menu menu-open';
-        } else if (
-            customButtonRef.current.classList.contains('menu-expanded')
-        ) {
-            customButtonRef.current.className = 'custom-button menu-unexpanded';
-            customMenuRef.current.className = 'menu menu-close';
-        }
-    };
 
     const handleSelectOption = (e: any) => {
         selectOption(e);
@@ -54,16 +41,13 @@ const SelectMenu = ({ label, id, options, inputRef }: selectMenuProps) => {
 
     return (
         <div className="select-menu">
-            <span
-                ref={customButtonRef}
-                onClick={handleTriggerMenu}
-                className="custom-button menu-unexpanded ui-selectmenu-button"
-            >
-                <span ref={selectedOptionRef} className="custom-button-text">
-                    {label ? label : firstOption}
-                </span>
-                <span className="custom-button-icon">▼</span>
-            </span>
+            <CustomButton
+                options={options}
+                label={label ? label : firstOption}
+                customButtonRef={customButtonRef}
+                customMenuRef={customMenuRef}
+                selectedOptionRef={selectedOptionRef}
+            />
 
             <div className="menu-wrapper">
                 <ul ref={customMenuRef} className="menu">

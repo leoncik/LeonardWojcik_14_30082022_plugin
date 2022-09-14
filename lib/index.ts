@@ -1,3 +1,3 @@
-import SelectMenu from './SelectMenu';
+import SelectMenu from './Components/SelectMenu/SelectMenu';
 
 export { SelectMenu };
