@@ -1,26 +1,19 @@
-import React, { useRef, useState } from 'react';
+import React from 'react';
 // import './SelectMenu.css';
 
 export interface selectMenuProps {
-    id?: string;
-    inputRef?: any;
-    options?: Array<string>;
+    id: string | undefined;
+    hiddenSelectRef: any;
+    selectedOption: any;
+    inputRef: any;
 }
 
-const HiddenSelect = ({ id, inputRef, options }: selectMenuProps) => {
-    // Refs
-    const customButtonRef: any = useRef();
-    const selectedOptionRef: any = useRef();
-    const customMenuRef: any = useRef();
-    const hiddenSelectRef: any = useRef();
-    // const hiddenOptionRef: any = useRef()
-
-    // Values
-    const firstOption = options![0];
-
-    // Local states
-    const [selectedOption, setSelectedOption] = useState(firstOption);
-
+const HiddenSelect = ({
+    hiddenSelectRef,
+    id,
+    selectedOption,
+    inputRef,
+}: selectMenuProps) => {
     return (
         <select
             ref={hiddenSelectRef}

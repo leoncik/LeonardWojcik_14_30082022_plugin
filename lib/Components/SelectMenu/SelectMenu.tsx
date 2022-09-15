@@ -1,14 +1,19 @@
+// React
 import React, { useRef, useState } from 'react';
+
+// CSS
 import './SelectMenu.css';
 
-import '../CustomButton/CustomButton';
+// Components
 import CustomButton from '../CustomButton/CustomButton';
+import CustomMenu from '../CustomMenu/CustomMenu';
+import HiddenSelect from '../HiddenSelect/HiddenSelect';
 
 export interface selectMenuProps {
     options: Array<string>;
     label?: string;
     id?: string;
-    inputRef?: any;
+    inputRef?: HTMLOptionElement | undefined;
 }
 
 const SelectMenu = ({ label, id, options, inputRef }: selectMenuProps) => {
@@ -49,30 +54,18 @@ const SelectMenu = ({ label, id, options, inputRef }: selectMenuProps) => {
                 selectedOptionRef={selectedOptionRef}
             />
 
-            <div className="menu-wrapper">
-                <ul ref={customMenuRef} className="menu">
-                    {options.map((option: string, index: number) => (
-                        <li
-                            onClick={handleSelectOption}
-                            className="menu-item"
-                            key={index}
-                        >
-                            {option}
-                        </li>
-                    ))}
-                </ul>
-            </div>
+            <CustomMenu
+                options={options}
+                handleSelectOption={handleSelectOption}
+                customMenuRef={customMenuRef}
+            />
 
-            <select
-                ref={hiddenSelectRef}
-                name="hidden-select"
+            <HiddenSelect
                 id={id}
-                style={{ display: 'none' }}
-            >
-                <option ref={inputRef} value={selectedOption}>
-                    {selectedOption}
-                </option>
-            </select>
+                selectedOption={selectedOption}
+                hiddenSelectRef={hiddenSelectRef}
+                inputRef={inputRef}
+            />
         </div>
     );
 };
