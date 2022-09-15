@@ -39,6 +39,8 @@ const CustomButton = ({
 
     return (
         <span
+            tabIndex={0}
+            onKeyDown={(e) => e.code === 'Enter' && handleTriggerMenu()}
             ref={customButtonRef}
             onClick={handleTriggerMenu}
             className="custom-button menu-unexpanded ui-selectmenu-button"

@@ -97,7 +97,8 @@
 .menu-item {
     cursor: pointer;
 }
-.menu-item:hover {
+.menu-item:hover,
+.menu-item:focus {
     background: #007fff;
     font-weight: normal;
     color: #ffffff;

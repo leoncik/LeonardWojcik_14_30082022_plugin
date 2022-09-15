@@ -26,6 +26,10 @@ const CustomMenu = ({
             >
                 {options.map((option: string, index: number) => (
                     <li
+                        tabIndex={0}
+                        onKeyDown={(e) =>
+                            e.code === 'Enter' && handleSelectOption(e)
+                        }
                         onClick={handleSelectOption}
                         className="menu-item"
                         key={index}
