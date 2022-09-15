@@ -14,9 +14,16 @@ export interface selectMenuProps {
     label?: string;
     id?: string;
     inputRef?: HTMLOptionElement | undefined;
+    width?: number | boolean;
 }
 
-const SelectMenu = ({ label, id, options, inputRef }: selectMenuProps) => {
+const SelectMenu = ({
+    label,
+    id,
+    options,
+    inputRef,
+    width,
+}: selectMenuProps) => {
     // Refs
     const customButtonRef: any = useRef();
     const selectedOptionRef: any = useRef();
@@ -45,19 +52,24 @@ const SelectMenu = ({ label, id, options, inputRef }: selectMenuProps) => {
     };
 
     return (
-        <div className="select-menu">
+        <div
+            className="select-menu"
+            style={{ width: `${width ? width : 210}px` }}
+        >
             <CustomButton
                 options={options}
                 label={label ? label : firstOption}
                 customButtonRef={customButtonRef}
                 customMenuRef={customMenuRef}
                 selectedOptionRef={selectedOptionRef}
+                width={width}
             />
 
             <CustomMenu
                 options={options}
                 handleSelectOption={handleSelectOption}
                 customMenuRef={customMenuRef}
+                width={width}
             />
 
             <HiddenSelect

@@ -7,6 +7,7 @@ export interface selectMenuProps {
     customButtonRef?: any;
     customMenuRef?: any;
     selectedOptionRef?: any;
+    width?: number | boolean;
 }
 
 const CustomButton = ({
@@ -15,6 +16,7 @@ const CustomButton = ({
     customButtonRef,
     customMenuRef,
     selectedOptionRef,
+    width,
 }: selectMenuProps) => {
     // Values
     const firstOption = options[0];
@@ -40,6 +42,7 @@ const CustomButton = ({
             ref={customButtonRef}
             onClick={handleTriggerMenu}
             className="custom-button menu-unexpanded ui-selectmenu-button"
+            style={{ width: `${width ? width : 210}px` }}
         >
             <span ref={selectedOptionRef} className="custom-button-text">
                 {label ? label : firstOption}

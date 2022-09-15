@@ -1,3 +1,9 @@
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
 .select-menu {
     position: relative;
 }
@@ -8,7 +14,7 @@
     /* original JQuery CSS */
     text-align: left;
     white-space: nowrap;
-    width: 14em;
+    /* width: 14em; */
     border-radius: 3px;
     color: #454545;
     text-decoration: none;
@@ -51,7 +57,7 @@
 .menu-wrapper {
     /* original JQuery CSS */
     /* Todo: set top value dynamically (depending on custom button height) */
-    top: 30px;
+    top: 35px;
     left: 0;
     display: block;
     padding: 0;
@@ -61,7 +67,6 @@
 }
 .menu {
     /* Original CSS style from JQuery */
-    width: 256px;
     border: 1px solid #c5c5c5;
     overflow: auto;
     overflow-x: auto;
