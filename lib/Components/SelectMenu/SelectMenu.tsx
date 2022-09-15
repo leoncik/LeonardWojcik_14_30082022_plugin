@@ -1,5 +1,5 @@
 // React
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 // CSS
 import './SelectMenu.css';
@@ -50,6 +50,24 @@ const SelectMenu = ({
             customMenuRef.current.className = 'menu menu-close';
         }
     };
+
+    // Close select menu if clicked outside and if the menu is opened.
+    useEffect(() => {
+        const closeSelectMenu = (e: any) => {
+            if (
+                e.path[0] !== customButtonRef.current &&
+                customButtonRef.current.classList.contains('menu-expanded')
+            ) {
+                customButtonRef.current.className =
+                    'custom-button menu-unexpanded';
+                customMenuRef.current.className = 'menu menu-close';
+            }
+        };
+
+        document.body.addEventListener('click', closeSelectMenu);
+        return () =>
+            document.body.removeEventListener('click', closeSelectMenu);
+    }, []);
 
     return (
         <div
