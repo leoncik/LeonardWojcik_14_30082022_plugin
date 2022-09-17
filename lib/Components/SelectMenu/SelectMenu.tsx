@@ -35,7 +35,11 @@ const SelectMenu = ({
     const firstOption = options[0];
 
     // Local states
-    const [selectedOption, setSelectedOption] = useState(firstOption);
+    const [hiddenOption, setHiddenOption] = useState(firstOption);
+    const [selectedOption, setSelectedOption] = useState();
+    const saveOption = (e: any) => {
+        setSelectedOption(e.target);
+    };
 
     const handleSelectOption = (e: any) => {
         selectOption(e);
@@ -43,7 +47,7 @@ const SelectMenu = ({
 
     const selectOption = (e: any) => {
         selectedOptionRef.current.textContent = e.target.textContent;
-        setSelectedOption(e.target.textContent);
+        setHiddenOption(e.target.textContent);
         // Close menu if opened
         if (customButtonRef.current.classList.contains('menu-expanded')) {
             customButtonRef.current.className = 'custom-button menu-unexpanded';
@@ -82,6 +86,7 @@ const SelectMenu = ({
                 customMenuRef={customMenuRef}
                 selectedOptionRef={selectedOptionRef}
                 width={width}
+                selectedOption={selectedOption}
             />
 
             <CustomMenu
@@ -90,11 +95,12 @@ const SelectMenu = ({
                 customMenuRef={customMenuRef}
                 width={width}
                 customButtonRef={customButtonRef}
+                saveOption={saveOption}
             />
 
             <HiddenSelect
                 id={id}
-                selectedOption={selectedOption}
+                hiddenOption={hiddenOption}
                 hiddenSelectRef={hiddenSelectRef}
                 inputRef={inputRef}
             />

@@ -7,6 +7,7 @@ export interface selectMenuProps {
     handleSelectOption: any;
     width?: number | boolean;
     customButtonRef: any;
+    saveOption: any;
 }
 
 const CustomMenu = ({
@@ -15,6 +16,7 @@ const CustomMenu = ({
     handleSelectOption,
     width,
     customButtonRef,
+    saveOption,
 }: selectMenuProps) => {
     const closeMenu = () => {
         if (customButtonRef.current.classList.contains('menu-expanded')) {
@@ -36,6 +38,7 @@ const CustomMenu = ({
             case 'Enter':
             case 'Space':
                 handleSelectOption(e);
+                saveOption(e);
                 break;
 
             case 'ArrowUp':

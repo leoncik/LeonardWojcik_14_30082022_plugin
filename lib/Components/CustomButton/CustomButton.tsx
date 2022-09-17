@@ -8,6 +8,7 @@ export interface selectMenuProps {
     customMenuRef?: any;
     selectedOptionRef?: any;
     width?: number | boolean;
+    selectedOption: any;
 }
 
 const CustomButton = ({
@@ -17,15 +18,10 @@ const CustomButton = ({
     customMenuRef,
     selectedOptionRef,
     width,
+    selectedOption,
 }: selectMenuProps) => {
     // Values
     const firstOption = options[0];
-
-    const handleTriggerMenu = () => {
-        triggerMenu();
-    };
-
-    // Todo : set focus on active option.
 
     const triggerMenu = () => {
         if (!customButtonRef.current.classList.contains('menu-expanded')) {
@@ -37,14 +33,44 @@ const CustomButton = ({
             customButtonRef.current.className = 'custom-button menu-unexpanded';
             customMenuRef.current.className = 'menu menu-close';
         }
+        // Set focus on selected option or on first option (if using a custom label or if for some reason the option could not be selected)
+        selectedOption
+            ? selectedOption.focus()
+            : customMenuRef.current.firstChild.focus();
+    };
+
+    const handleMenuNavigation = (e: any) => {
+        switch (e.code) {
+            case 'Enter':
+                triggerMenu();
+                break;
+
+            // Item selection when the menu is closed
+            case 'ArrowUp':
+            case 'ArrowLeft':
+                // Select previous option if It exists
+                // ...
+                break;
+
+            case 'ArrowDown':
+            case 'ArrowRight':
+                // Select next option if It exists
+                // ...
+                break;
+
+            default:
+                break;
+        }
     };
 
     return (
         <span
             tabIndex={0}
-            onKeyDown={(e) => e.code === 'Enter' && handleTriggerMenu()}
+            onKeyDown={(e) => {
+                handleMenuNavigation(e);
+            }}
             ref={customButtonRef}
-            onClick={handleTriggerMenu}
+            onClick={triggerMenu}
             className="custom-button menu-unexpanded ui-selectmenu-button"
             style={{ width: `${width ? width : 210}px` }}
         >
