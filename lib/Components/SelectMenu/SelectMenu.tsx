@@ -49,6 +49,7 @@ const SelectMenu = ({
             customButtonRef.current.className = 'custom-button menu-unexpanded';
             customMenuRef.current.className = 'menu menu-close';
         }
+        customButtonRef.current.focus();
     };
 
     // Close select menu if clicked outside and if the menu is opened.
@@ -88,6 +89,7 @@ const SelectMenu = ({
                 handleSelectOption={handleSelectOption}
                 customMenuRef={customMenuRef}
                 width={width}
+                customButtonRef={customButtonRef}
             />
 
             <HiddenSelect

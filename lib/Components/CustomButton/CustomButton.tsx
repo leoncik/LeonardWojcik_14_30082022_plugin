@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React from 'react';
 // import './SelectMenu.css';
 
 export interface selectMenuProps {
@@ -24,6 +24,8 @@ const CustomButton = ({
     const handleTriggerMenu = () => {
         triggerMenu();
     };
+
+    // Todo : set focus on active option.
 
     const triggerMenu = () => {
         if (!customButtonRef.current.classList.contains('menu-expanded')) {
