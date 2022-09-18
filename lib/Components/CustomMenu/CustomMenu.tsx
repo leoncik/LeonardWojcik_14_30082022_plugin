@@ -76,7 +76,11 @@ const CustomMenu = ({
                         onKeyDown={(e: any) => {
                             handleMenuNavigation(e);
                         }}
-                        onClick={handleSelectOption}
+                        onClick={(e) => {
+                            handleSelectOption(e);
+                            saveOption(e);
+                        }}
+                        onMouseOver={(e: any) => e.target.focus()}
                         className="menu-item"
                         key={index}
                         style={{ width: `${width ? width : 210}px` }}
