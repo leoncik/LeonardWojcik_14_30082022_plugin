@@ -52,6 +52,11 @@
     color: #ffffff;
 }
 
+.button-disabled {
+    opacity: 0.45;
+    pointer-events: none;
+}
+
 /* Prevent possible conflicts with the function that is closing the select menu when clicking outside. */
 .custom-button > * {
     pointer-events: none;

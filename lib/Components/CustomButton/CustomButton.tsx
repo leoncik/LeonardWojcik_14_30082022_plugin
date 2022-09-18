@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 // import './SelectMenu.css';
 
 export interface selectMenuProps {
@@ -14,6 +14,7 @@ export interface selectMenuProps {
     updateNextOptionWithIndex: any;
     decrementOptionIndex: any;
     updatePreviousOptionWithIndex: any;
+    disabled: boolean;
 }
 
 const CustomButton = ({
@@ -29,18 +30,20 @@ const CustomButton = ({
     updateNextOptionWithIndex,
     decrementOptionIndex,
     updatePreviousOptionWithIndex,
+    disabled,
 }: selectMenuProps) => {
     // Values
     const firstOption = options[0];
 
     const triggerMenu = () => {
         if (!customButtonRef.current.classList.contains('menu-expanded')) {
-            customButtonRef.current.className = 'custom-button menu-expanded';
+            customButtonRef.current.classList.add('menu-expanded');
             customMenuRef.current.className = 'menu menu-open';
         } else if (
             customButtonRef.current.classList.contains('menu-expanded')
         ) {
-            customButtonRef.current.className = 'custom-button menu-unexpanded';
+            customButtonRef.current.classList.remove('menu-expanded');
+            customButtonRef.current.classList.add('menu-unexpanded');
             customMenuRef.current.className = 'menu menu-close';
         }
         // Set focus on selected option or on first option (if using a custom label or if for some reason the option could not be selected)
@@ -99,13 +102,17 @@ const CustomButton = ({
 
     return (
         <span
-            tabIndex={0}
+            tabIndex={disabled ? -1 : 0}
             onKeyDown={(e) => {
                 handleMenuNavigation(e);
             }}
             ref={customButtonRef}
             onClick={triggerMenu}
-            className="custom-button menu-unexpanded ui-selectmenu-button"
+            className={
+                disabled
+                    ? 'button-disabled custom-button menu-unexpanded ui-selectmenu-button'
+                    : 'custom-button menu-unexpanded ui-selectmenu-button'
+            }
             style={{ width: `${width ? width : 210}px` }}
         >
             <span ref={selectedOptionRef} className="custom-button-text">

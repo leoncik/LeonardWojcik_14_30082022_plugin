@@ -13,15 +13,47 @@ const Template: ComponentStory<typeof SelectMenu> = (args) => (
     <SelectMenu {...args} />
 );
 
-export const HelloWorld = Template.bind({});
+export const Basic = Template.bind({});
 // More on args: https://storybook.js.org/docs/react/writing-stories/args
-HelloWorld.args = {
-    label: 'I am a test!',
+Basic.args = {
+    label: 'Select a state',
     options: ['Alabama', 'Alaska', 'American Samoa'],
 };
 
-export const ClickMe = Template.bind({});
-ClickMe.args = {
-    label: 'Click me!',
-    options: ['Only one option here!'],
+export const Scrollable = Template.bind({});
+Scrollable.args = {
+    label: 'Select a composer',
+    options: [
+        'Arensky',
+        'Bach',
+        'Beethoven',
+        'Brahms',
+        'Chopin',
+        'Czerny',
+        'Debussy',
+        'Fibich',
+        'Haydn',
+        'Kalkbrenner',
+        'Mozart',
+        'Prokofiev',
+        'Rachmaninov',
+        'Ravel',
+        'Satie',
+        'Schubert',
+        'Schumann',
+        'Sibelius',
+        'Stanchinsky',
+        'Tchaïkovsky',
+        'Verdi',
+        'Vivaldi',
+        'Weber',
+    ],
+};
+
+export const Disabled = Template.bind({});
+Disabled.args = {
+    label: 'No one shall trigger me!',
+    options: ['Magic mushroom', 'Fairy powder', 'Excalibur'],
+    width: 400,
+    disabled: true,
 };

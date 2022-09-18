@@ -16,6 +16,7 @@ export interface selectMenuProps {
     inputRef?: HTMLOptionElement | undefined;
     width?: number | boolean;
     className?: string;
+    disabled?: boolean;
 }
 
 const SelectMenu = ({
@@ -25,6 +26,7 @@ const SelectMenu = ({
     inputRef,
     width,
     className,
+    disabled = false,
 }: selectMenuProps) => {
     // Refs
     const customButtonRef: any = useRef();
@@ -76,7 +78,8 @@ const SelectMenu = ({
         setHiddenOption(e.target.textContent);
         // Close menu if opened
         if (customButtonRef.current.classList.contains('menu-expanded')) {
-            customButtonRef.current.className = 'custom-button menu-unexpanded';
+            customButtonRef.current.classList.remove('menu-expanded');
+            customButtonRef.current.classList.add('menu-unexpanded');
             customMenuRef.current.className = 'menu menu-close';
         }
         customButtonRef.current.focus();
@@ -89,8 +92,8 @@ const SelectMenu = ({
                 e.path[0] !== customButtonRef.current &&
                 customButtonRef.current.classList.contains('menu-expanded')
             ) {
-                customButtonRef.current.className =
-                    'custom-button menu-unexpanded';
+                customButtonRef.current.classList.remove('menu-expanded');
+                customButtonRef.current.classList.add('menu-unexpanded');
                 customMenuRef.current.className = 'menu menu-close';
             }
         };
@@ -112,6 +115,7 @@ const SelectMenu = ({
                 customMenuRef={customMenuRef}
                 selectedOptionRef={selectedOptionRef}
                 width={width}
+                disabled={disabled}
                 selectedOption={selectedOption}
                 optionIndex={optionIndex}
                 incrementOptionIndex={incrementOptionIndex}
