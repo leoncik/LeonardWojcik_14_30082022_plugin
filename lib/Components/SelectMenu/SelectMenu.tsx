@@ -29,7 +29,6 @@ const SelectMenu = ({
     const selectedOptionRef: any = useRef();
     const customMenuRef: any = useRef();
     const hiddenSelectRef: any = useRef();
-    // const hiddenOptionRef: any = useRef()
 
     // Values
     const firstOption = options[0];
@@ -37,8 +36,33 @@ const SelectMenu = ({
     // Local states
     const [hiddenOption, setHiddenOption] = useState(firstOption);
     const [selectedOption, setSelectedOption] = useState();
+    const [optionIndex, setOptionIndex] = useState(0);
+
     const saveOption = (e: any) => {
         setSelectedOption(e.target);
+    };
+
+    const saveOptionIndex = (e: any) => {
+        setOptionIndex(
+            Array.from(e.target.parentNode.children).indexOf(e.target)
+        );
+    };
+    const incrementOptionIndex = () => {
+        setOptionIndex(optionIndex + 1);
+    };
+    const decrementOptionIndex = () => {
+        setOptionIndex(optionIndex - 1);
+    };
+    // Todo : refactor update functions inside a single function.
+    const updateNextOptionWithIndex = (e: any) => {
+        setSelectedOption(
+            e.target.nextElementSibling.firstChild.children[optionIndex + 1]
+        );
+    };
+    const updatePreviousOptionWithIndex = (e: any) => {
+        setSelectedOption(
+            e.target.nextElementSibling.firstChild.children[optionIndex - 1]
+        );
     };
 
     const handleSelectOption = (e: any) => {
@@ -87,6 +111,11 @@ const SelectMenu = ({
                 selectedOptionRef={selectedOptionRef}
                 width={width}
                 selectedOption={selectedOption}
+                optionIndex={optionIndex}
+                incrementOptionIndex={incrementOptionIndex}
+                updateNextOptionWithIndex={updateNextOptionWithIndex}
+                decrementOptionIndex={decrementOptionIndex}
+                updatePreviousOptionWithIndex={updatePreviousOptionWithIndex}
             />
 
             <CustomMenu
@@ -96,6 +125,7 @@ const SelectMenu = ({
                 width={width}
                 customButtonRef={customButtonRef}
                 saveOption={saveOption}
+                saveOptionIndex={saveOptionIndex}
             />
 
             <HiddenSelect

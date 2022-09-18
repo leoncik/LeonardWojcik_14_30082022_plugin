@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 // import './SelectMenu.css';
 
 export interface selectMenuProps {
@@ -9,6 +9,11 @@ export interface selectMenuProps {
     selectedOptionRef?: any;
     width?: number | boolean;
     selectedOption: any;
+    optionIndex: number;
+    incrementOptionIndex: any;
+    updateNextOptionWithIndex: any;
+    decrementOptionIndex: any;
+    updatePreviousOptionWithIndex: any;
 }
 
 const CustomButton = ({
@@ -19,6 +24,11 @@ const CustomButton = ({
     selectedOptionRef,
     width,
     selectedOption,
+    optionIndex,
+    incrementOptionIndex,
+    updateNextOptionWithIndex,
+    decrementOptionIndex,
+    updatePreviousOptionWithIndex,
 }: selectMenuProps) => {
     // Values
     const firstOption = options[0];
@@ -39,6 +49,30 @@ const CustomButton = ({
             : customMenuRef.current.firstChild.focus();
     };
 
+    const selectNextOption = (e: any) => {
+        // If there is another option available after the one that is currently active, select this option.
+        if (e.target.nextElementSibling.firstChild.children[optionIndex + 1]) {
+            selectedOptionRef.current.textContent =
+                e.target.nextElementSibling.firstChild.children[
+                    optionIndex + 1
+                ].textContent;
+            updateNextOptionWithIndex(e);
+            incrementOptionIndex();
+        }
+    };
+
+    const selectPreviousOption = (e: any) => {
+        // If there is another option available before the one that is currently active, select this option.
+        if (e.target.nextElementSibling.firstChild.children[optionIndex - 1]) {
+            selectedOptionRef.current.textContent =
+                e.target.nextElementSibling.firstChild.children[
+                    optionIndex - 1
+                ].textContent;
+            updatePreviousOptionWithIndex(e);
+            decrementOptionIndex();
+        }
+    };
+
     const handleMenuNavigation = (e: any) => {
         switch (e.code) {
             case 'Enter':
@@ -49,13 +83,13 @@ const CustomButton = ({
             case 'ArrowUp':
             case 'ArrowLeft':
                 // Select previous option if It exists
-                // ...
+                selectPreviousOption(e);
                 break;
 
             case 'ArrowDown':
             case 'ArrowRight':
                 // Select next option if It exists
-                // ...
+                selectNextOption(e);
                 break;
 
             default:

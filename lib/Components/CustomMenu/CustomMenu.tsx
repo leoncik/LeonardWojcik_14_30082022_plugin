@@ -8,6 +8,7 @@ export interface selectMenuProps {
     width?: number | boolean;
     customButtonRef: any;
     saveOption: any;
+    saveOptionIndex: any;
 }
 
 const CustomMenu = ({
@@ -17,6 +18,7 @@ const CustomMenu = ({
     width,
     customButtonRef,
     saveOption,
+    saveOptionIndex,
 }: selectMenuProps) => {
     const closeMenu = () => {
         if (customButtonRef.current.classList.contains('menu-expanded')) {
@@ -39,6 +41,7 @@ const CustomMenu = ({
             case 'Space':
                 handleSelectOption(e);
                 saveOption(e);
+                saveOptionIndex(e);
                 break;
 
             case 'ArrowUp':
@@ -79,6 +82,7 @@ const CustomMenu = ({
                         onClick={(e) => {
                             handleSelectOption(e);
                             saveOption(e);
+                            saveOptionIndex(e);
                         }}
                         onMouseOver={(e: any) => e.target.focus()}
                         className="menu-item"
