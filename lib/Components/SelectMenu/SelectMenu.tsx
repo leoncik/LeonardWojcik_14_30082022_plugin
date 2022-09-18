@@ -15,6 +15,7 @@ export interface selectMenuProps {
     id?: string;
     inputRef?: HTMLOptionElement | undefined;
     width?: number | boolean;
+    className?: string;
 }
 
 const SelectMenu = ({
@@ -23,6 +24,7 @@ const SelectMenu = ({
     options,
     inputRef,
     width,
+    className,
 }: selectMenuProps) => {
     // Refs
     const customButtonRef: any = useRef();
@@ -100,7 +102,7 @@ const SelectMenu = ({
 
     return (
         <div
-            className="select-menu"
+            className={className ? 'select-menu ' + className : 'select-menu'}
             style={{ width: `${width ? width : 210}px` }}
         >
             <CustomButton
