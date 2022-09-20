@@ -27,14 +27,16 @@ In order to convert the original plugin into a React component, I had to make so
 
 ## Properties
 
-| Name      | Type   | Default       | Description                                                                                                                                                                                                   |
-| --------- | ------ | ------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| options   | array  | null          | An array containing the list of options for the select menu.                                                                                                                                                  |
-| label     | string | null          | Set the text content inside the button that triggers the select menu. By default It will use the first option as label.                                                                                       |
-| id        | string | null          | Set the _id_ of the select menu (useful to link to a label element).                                                                                                                                          |
-| inputRef  | any    | null          | Set [ref](https://reactjs.org/docs/hooks-reference.html#useref) to the _select_ input element of the select menu. You can easily access the value of the input with something like : "yourRef.current.value". |
-| width     | Number | 210           | The width of the menu, in pixels. When the value is _false_, a default width of 210px is used.                                                                                                                |
-| className | string | "select-menu" | Class name of the select menu.                                                                                                                                                                                |
+| Name       | Type    | Default       | Description                                                                                                                                                                                                   |
+| ---------- | ------- | ------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| options    | array   | null          | An array containing the list of options for the select menu.                                                                                                                                                  |
+| label      | string  | null          | Set the text content inside the button that triggers the select menu. By default It will use the first option as label.                                                                                       |
+| id         | string  | null          | Set the _id_ of the select menu (useful to link to a label element).                                                                                                                                          |
+| inputRef   | any     | null          | Set [ref](https://reactjs.org/docs/hooks-reference.html#useref) to the _select_ input element of the select menu. You can easily access the value of the input with something like : "yourRef.current.value". |
+| width      | number  | 210           | The width of the menu, in pixels. When the value is _false_, a default width of 210px is used.                                                                                                                |
+| maxHeight  | number  | 200           | The maximum height of the menu, in pixels. Only applied if the **scrollable** property is set to true.                                                                                                        |
+| scrollable | boolean | true          | Makes the menu scrollable (useful if there are many options).                                                                                                                                                 |
+| className  | string  | "select-menu" | Class name of the select menu.                                                                                                                                                                                |
 
 ## Tests documentation
 

@@ -9,6 +9,8 @@ export interface selectMenuProps {
     customButtonRef: any;
     saveOption: any;
     saveOptionIndex: any;
+    maxHeight: number;
+    scrollable: boolean;
 }
 
 const CustomMenu = ({
@@ -19,6 +21,8 @@ const CustomMenu = ({
     customButtonRef,
     saveOption,
     saveOptionIndex,
+    maxHeight,
+    scrollable,
 }: selectMenuProps) => {
     const closeMenu = () => {
         if (customButtonRef.current.classList.contains('menu-expanded')) {
@@ -68,7 +72,10 @@ const CustomMenu = ({
             <ul
                 ref={customMenuRef}
                 className="menu"
-                style={{ width: `${width}px` }}
+                style={{
+                    width: `${width}px`,
+                    maxHeight: scrollable ? `${maxHeight}px` : 'auto',
+                }}
             >
                 {options.map((option: string, index: number) => (
                     <li
