@@ -21,6 +21,7 @@ export interface selectMenuProps {
     scrollable?: boolean;
     offsetX?: number;
     offsetY?: number;
+    buttonIconPath?: string;
 }
 
 const SelectMenu = ({
@@ -35,6 +36,7 @@ const SelectMenu = ({
     scrollable = true,
     offsetX = 0,
     offsetY = 0,
+    buttonIconPath = 'static/media/lib/assets/chevron-down.svg',
 }: selectMenuProps) => {
     // Refs
     const customButtonRef: any = useRef();
@@ -126,6 +128,7 @@ const SelectMenu = ({
                 disabled={disabled}
                 selectedOption={selectedOption}
                 optionIndex={optionIndex}
+                buttonIconPath={buttonIconPath}
                 incrementOptionIndex={incrementOptionIndex}
                 updateNextOptionWithIndex={updateNextOptionWithIndex}
                 decrementOptionIndex={decrementOptionIndex}

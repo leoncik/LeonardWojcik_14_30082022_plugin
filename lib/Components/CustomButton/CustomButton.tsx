@@ -15,6 +15,7 @@ export interface selectMenuProps {
     decrementOptionIndex: any;
     updatePreviousOptionWithIndex: any;
     disabled: boolean;
+    buttonIconPath: string;
 }
 
 const CustomButton = ({
@@ -31,9 +32,11 @@ const CustomButton = ({
     decrementOptionIndex,
     updatePreviousOptionWithIndex,
     disabled,
+    buttonIconPath,
 }: selectMenuProps) => {
     // Values
     const firstOption = options?.[0] || '';
+    // const iconPathTest = require("../../assets/chevron-down.svg") as string;
 
     const triggerMenu = () => {
         if (!customButtonRef.current.classList.contains('menu-expanded')) {
@@ -118,7 +121,7 @@ const CustomButton = ({
             <span ref={selectedOptionRef} className="custom-button-text">
                 {label ? label : firstOption}
             </span>
-            <span className="custom-button-icon">▼</span>
+            <img src={buttonIconPath} className="custom-button-icon" />
         </span>
     );
 };
