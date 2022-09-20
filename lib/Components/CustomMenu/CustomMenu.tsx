@@ -1,4 +1,4 @@
-import React, { useLayoutEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 // import './SelectMenu.css';
 
 export interface selectMenuProps {
@@ -30,7 +30,7 @@ const CustomMenu = ({
 }: selectMenuProps) => {
     // Get height of the custom button to set menu position
     const [customButtonHeight, setCustomButtonHeight] = useState(0);
-    useLayoutEffect(() => {
+    useEffect(() => {
         setCustomButtonHeight(customButtonRef.current.offsetHeight);
     }, []);
 
