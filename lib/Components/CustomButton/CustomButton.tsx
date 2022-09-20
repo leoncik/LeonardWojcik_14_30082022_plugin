@@ -33,7 +33,7 @@ const CustomButton = ({
     disabled,
 }: selectMenuProps) => {
     // Values
-    const firstOption = options[0];
+    const firstOption = options?.[0] || '';
 
     const triggerMenu = () => {
         if (!customButtonRef.current.classList.contains('menu-expanded')) {
@@ -113,7 +113,7 @@ const CustomButton = ({
                     ? 'button-disabled custom-button menu-unexpanded ui-selectmenu-button'
                     : 'custom-button menu-unexpanded ui-selectmenu-button'
             }
-            style={{ width: `${width ? width : 210}px` }}
+            style={{ width: `${width}px` }}
         >
             <span ref={selectedOptionRef} className="custom-button-text">
                 {label ? label : firstOption}

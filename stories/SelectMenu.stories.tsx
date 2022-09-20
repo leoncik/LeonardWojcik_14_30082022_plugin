@@ -16,7 +16,6 @@ const Template: ComponentStory<typeof SelectMenu> = (args) => (
 export const Basic = Template.bind({});
 // More on args: https://storybook.js.org/docs/react/writing-stories/args
 Basic.args = {
-    label: 'Select a state',
     options: ['Alabama', 'Alaska', 'American Samoa'],
 };
 

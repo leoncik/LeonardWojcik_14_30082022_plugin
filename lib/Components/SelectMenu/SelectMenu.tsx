@@ -24,7 +24,7 @@ const SelectMenu = ({
     id,
     options,
     inputRef,
-    width,
+    width = 210,
     className,
     disabled = false,
 }: selectMenuProps) => {
@@ -35,7 +35,7 @@ const SelectMenu = ({
     const hiddenSelectRef: any = useRef();
 
     // Values
-    const firstOption = options[0];
+    const firstOption = options?.[0] || '';
 
     // Local states
     const [hiddenOption, setHiddenOption] = useState(firstOption);
@@ -106,7 +106,7 @@ const SelectMenu = ({
     return (
         <div
             className={className ? 'select-menu ' + className : 'select-menu'}
-            style={{ width: `${width ? width : 210}px` }}
+            style={{ width: `${width}px` }}
         >
             <CustomButton
                 options={options}

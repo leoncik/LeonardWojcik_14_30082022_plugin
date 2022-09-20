@@ -64,14 +64,11 @@ const CustomMenu = ({
     };
 
     return (
-        <div
-            className="menu-wrapper"
-            style={{ width: `${width ? width : 210}px` }}
-        >
+        <div className="menu-wrapper" style={{ width: `${width}px` }}>
             <ul
                 ref={customMenuRef}
                 className="menu"
-                style={{ width: `${width ? width : 210}px` }}
+                style={{ width: `${width}px` }}
             >
                 {options.map((option: string, index: number) => (
                     <li
@@ -87,7 +84,7 @@ const CustomMenu = ({
                         onMouseOver={(e: any) => e.target.focus()}
                         className="menu-item"
                         key={index}
-                        style={{ width: `${width ? width : 210}px` }}
+                        style={{ width: `${width}px` }}
                     >
                         {option}
                     </li>
