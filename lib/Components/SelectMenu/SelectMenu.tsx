@@ -9,6 +9,9 @@ import CustomButton from '../CustomButton/CustomButton';
 import CustomMenu from '../CustomMenu/CustomMenu';
 import HiddenSelect from '../HiddenSelect/HiddenSelect';
 
+// Assets
+import defaultButtonIcon from '../../assets/chevron-down.svg';
+
 export interface selectMenuProps {
     options: Array<string>;
     label?: string;
@@ -36,7 +39,7 @@ const SelectMenu = ({
     scrollable = true,
     offsetX = 0,
     offsetY = 0,
-    buttonIconPath = 'static/media/lib/assets/chevron-down.svg',
+    buttonIconPath = defaultButtonIcon,
 }: selectMenuProps) => {
     // Refs
     const customButtonRef: any = useRef();

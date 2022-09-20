@@ -4,6 +4,7 @@ import typescript from "rollup-plugin-typescript2";
 import postcss from "rollup-plugin-postcss";
 import { uglify } from "rollup-plugin-uglify";
 import { babel } from '@rollup/plugin-babel';
+import image from '@rollup/plugin-image';
 
 export default {
     input: "./lib/index.ts",
@@ -21,6 +22,7 @@ export default {
             extensions: ['.css']
         }),
         uglify(),
-        babel()
+        babel(),
+        image()
     ]
 }
