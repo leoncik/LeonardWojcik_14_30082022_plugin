@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useLayoutEffect, useState } from 'react';
 // import './SelectMenu.css';
 
 export interface selectMenuProps {
@@ -11,6 +11,8 @@ export interface selectMenuProps {
     saveOptionIndex: any;
     maxHeight: number;
     scrollable: boolean;
+    offsetX: number;
+    offsetY: number;
 }
 
 const CustomMenu = ({
@@ -23,7 +25,15 @@ const CustomMenu = ({
     saveOptionIndex,
     maxHeight,
     scrollable,
+    offsetX,
+    offsetY,
 }: selectMenuProps) => {
+    // Get height of the custom button to set menu position
+    const [customButtonHeight, setCustomButtonHeight] = useState(0);
+    useLayoutEffect(() => {
+        setCustomButtonHeight(customButtonRef.current.offsetHeight);
+    }, []);
+
     const closeMenu = () => {
         if (customButtonRef.current.classList.contains('menu-expanded')) {
             customButtonRef.current.className = 'custom-button menu-unexpanded';
@@ -68,7 +78,14 @@ const CustomMenu = ({
     };
 
     return (
-        <div className="menu-wrapper" style={{ width: `${width}px` }}>
+        <div
+            className="menu-wrapper"
+            style={{
+                width: `${width}px`,
+                top: `${customButtonHeight + offsetY}px`,
+                left: `${0 + offsetX}px`,
+            }}
+        >
             <ul
                 ref={customMenuRef}
                 className="menu"

@@ -19,6 +19,8 @@ export interface selectMenuProps {
     disabled?: boolean;
     maxHeight?: any;
     scrollable?: boolean;
+    offsetX?: number;
+    offsetY?: number;
 }
 
 const SelectMenu = ({
@@ -31,6 +33,8 @@ const SelectMenu = ({
     disabled = false,
     maxHeight = 200,
     scrollable = true,
+    offsetX = 0,
+    offsetY = 0,
 }: selectMenuProps) => {
     // Refs
     const customButtonRef: any = useRef();
@@ -138,6 +142,8 @@ const SelectMenu = ({
                 saveOptionIndex={saveOptionIndex}
                 maxHeight={maxHeight}
                 scrollable={scrollable}
+                offsetX={offsetX}
+                offsetY={offsetY}
             />
 
             <HiddenSelect

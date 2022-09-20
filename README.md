@@ -36,6 +36,8 @@ In order to convert the original plugin into a React component, I had to make so
 | width      | number  | 210           | The width of the menu, in pixels. When the value is _false_, a default width of 210px is used.                                                                                                                |
 | maxHeight  | number  | 200           | The maximum height of the menu, in pixels. Only applied if the **scrollable** property is set to true.                                                                                                        |
 | scrollable | boolean | true          | Makes the menu scrollable (useful if there are many options).                                                                                                                                                 |
+| offsetX    | number  | 0             | Offset of the menu on the X axis (negative values are allowed).                                                                                                                                               |
+| offsetY    | number  | 0             | Offset of the menu on the Y axis (negative values are allowed).                                                                                                                                               |
 | className  | string  | "select-menu" | Class name of the select menu.                                                                                                                                                                                |
 
 ## Tests documentation
