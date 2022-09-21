@@ -14,6 +14,7 @@ import defaultButtonIcon from '../../assets/chevron-down.svg';
 
 export interface selectMenuProps {
     options: Array<string>;
+    optionsValues?: Array<string> | undefined;
     label?: string;
     id?: string;
     inputRef?: HTMLOptionElement | undefined;
@@ -42,6 +43,7 @@ const SelectMenu = ({
     offsetY = 0,
     buttonIconPath = defaultButtonIcon,
     showButtonIcon = true,
+    optionsValues,
 }: selectMenuProps) => {
     // Refs
     const customButtonRef: any = useRef();
@@ -51,9 +53,14 @@ const SelectMenu = ({
 
     // Values
     const firstOption = options?.[0] || '';
+    const firstOptionValue = optionsValues
+        ? optionsValues?.[0]
+        : options?.[0] || '';
 
     // Local states
-    const [hiddenOption, setHiddenOption] = useState(firstOption);
+    const [hiddenOptionText, setHiddenOptionText] = useState(firstOption);
+    const [hiddenOptionValue, setHiddenOptionValue] =
+        useState(firstOptionValue);
     const [selectedOption, setSelectedOption] = useState();
     const [optionIndex, setOptionIndex] = useState(0);
 
@@ -90,7 +97,10 @@ const SelectMenu = ({
 
     const selectOption = (e: any) => {
         selectedOptionRef.current.textContent = e.target.textContent;
-        setHiddenOption(e.target.textContent);
+        setHiddenOptionText(e.target.textContent);
+        if (optionsValues) {
+            setHiddenOptionValue(e.target.getAttribute('data-option-value'));
+        }
         // Close menu if opened
         if (customButtonRef.current.classList.contains('menu-expanded')) {
             customButtonRef.current.classList.remove('menu-expanded');
@@ -131,6 +141,7 @@ const SelectMenu = ({
                 customButtonRef={customButtonRef}
                 customMenuRef={customMenuRef}
                 selectedOptionRef={selectedOptionRef}
+                hiddenSelectRef={hiddenSelectRef}
                 width={width}
                 disabled={disabled}
                 selectedOption={selectedOption}
@@ -141,6 +152,7 @@ const SelectMenu = ({
                 decrementOptionIndex={decrementOptionIndex}
                 updatePreviousOptionWithIndex={updatePreviousOptionWithIndex}
                 showButtonIcon={showButtonIcon}
+                optionsValues={optionsValues}
             />
 
             <CustomMenu
@@ -155,13 +167,16 @@ const SelectMenu = ({
                 scrollable={scrollable}
                 offsetX={offsetX}
                 offsetY={offsetY}
+                optionsValues={optionsValues}
             />
 
             <HiddenSelect
                 id={id}
-                hiddenOption={hiddenOption}
+                hiddenOptionText={hiddenOptionText}
+                hiddenOptionValue={hiddenOptionValue}
                 hiddenSelectRef={hiddenSelectRef}
                 inputRef={inputRef}
+                optionsValues={optionsValues}
             />
         </div>
     );

@@ -4,15 +4,19 @@ import React from 'react';
 export interface selectMenuProps {
     id: string | undefined;
     hiddenSelectRef: any;
-    hiddenOption: any;
+    hiddenOptionText: any;
+    hiddenOptionValue: any;
     inputRef: any;
+    optionsValues: any;
 }
 
 const HiddenSelect = ({
     hiddenSelectRef,
     id,
-    hiddenOption,
+    hiddenOptionText,
+    hiddenOptionValue,
     inputRef,
+    optionsValues,
 }: selectMenuProps) => {
     return (
         <select
@@ -21,8 +25,11 @@ const HiddenSelect = ({
             id={id}
             style={{ display: 'none' }}
         >
-            <option ref={inputRef} value={hiddenOption}>
-                {hiddenOption}
+            <option
+                ref={inputRef}
+                value={optionsValues ? hiddenOptionValue : hiddenOptionText}
+            >
+                {hiddenOptionText}
             </option>
         </select>
     );

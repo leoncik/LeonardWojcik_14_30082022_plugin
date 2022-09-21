@@ -17,10 +17,13 @@ export interface selectMenuProps {
     disabled: boolean;
     buttonIconPath: string;
     showButtonIcon: boolean;
+    hiddenSelectRef: any;
+    optionsValues: Array<string> | undefined;
 }
 
 const CustomButton = ({
     options,
+    optionsValues,
     label,
     customButtonRef,
     customMenuRef,
@@ -35,6 +38,7 @@ const CustomButton = ({
     disabled,
     buttonIconPath,
     showButtonIcon,
+    hiddenSelectRef,
 }: selectMenuProps) => {
     // Values
     const firstOption = options?.[0] || '';
@@ -68,6 +72,22 @@ const CustomButton = ({
                 ].textContent;
             updateNextOptionWithIndex(e);
             incrementOptionIndex();
+            // Save option in hidden select (use optionsValues if available. Else use option text content)
+            hiddenSelectRef.current.firstChild.textContent =
+                e.target.nextElementSibling.firstChild.children[
+                    optionIndex + 1
+                ].textContent;
+            if (optionsValues) {
+                hiddenSelectRef.current.firstChild.value =
+                    e.target.nextElementSibling.firstChild.children[
+                        optionIndex + 1
+                    ].getAttribute('data-option-value');
+            } else {
+                hiddenSelectRef.current.firstChild.value =
+                    e.target.nextElementSibling.firstChild.children[
+                        optionIndex + 1
+                    ].textContent;
+            }
         }
     };
 
@@ -80,6 +100,22 @@ const CustomButton = ({
                 ].textContent;
             updatePreviousOptionWithIndex(e);
             decrementOptionIndex();
+            // Save option in hidden select (use optionsValues if available. Else use option text content)
+            hiddenSelectRef.current.firstChild.textContent =
+                e.target.nextElementSibling.firstChild.children[
+                    optionIndex - 1
+                ].textContent;
+            if (optionsValues) {
+                hiddenSelectRef.current.firstChild.value =
+                    e.target.nextElementSibling.firstChild.children[
+                        optionIndex - 1
+                    ].getAttribute('data-option-value');
+            } else {
+                hiddenSelectRef.current.firstChild.value =
+                    e.target.nextElementSibling.firstChild.children[
+                        optionIndex - 1
+                    ].textContent;
+            }
         }
     };
 

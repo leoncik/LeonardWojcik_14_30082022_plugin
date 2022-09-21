@@ -13,6 +13,7 @@ export interface selectMenuProps {
     scrollable: boolean;
     offsetX: number;
     offsetY: number;
+    optionsValues: Array<string> | undefined;
 }
 
 const CustomMenu = ({
@@ -27,6 +28,7 @@ const CustomMenu = ({
     scrollable,
     offsetX,
     offsetY,
+    optionsValues,
 }: selectMenuProps) => {
     // Get height of the custom button to set menu position
     const [customButtonHeight, setCustomButtonHeight] = useState(0);
@@ -110,6 +112,9 @@ const CustomMenu = ({
                         className="menu-item"
                         key={index}
                         style={{ width: `${width}px` }}
+                        data-option-value={
+                            optionsValues ? optionsValues[index] : option
+                        }
                     >
                         {option}
                     </li>
