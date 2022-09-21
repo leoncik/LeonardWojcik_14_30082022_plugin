@@ -44,12 +44,14 @@ const CustomButton = ({
         if (!customButtonRef.current.classList.contains('menu-expanded')) {
             customButtonRef.current.classList.add('menu-expanded');
             customMenuRef.current.className = 'menu menu-open';
+            customButtonRef.current.setAttribute('aria-expanded', true);
         } else if (
             customButtonRef.current.classList.contains('menu-expanded')
         ) {
             customButtonRef.current.classList.remove('menu-expanded');
             customButtonRef.current.classList.add('menu-unexpanded');
             customMenuRef.current.className = 'menu menu-close';
+            customButtonRef.current.setAttribute('aria-expanded', false);
         }
         // Set focus on selected option or on first option (if using a custom label or if for some reason the option could not be selected)
         selectedOption
@@ -119,6 +121,18 @@ const CustomButton = ({
                     : 'custom-button menu-unexpanded ui-selectmenu-button'
             }
             style={{ width: `${width}px` }}
+            role="combobox"
+            aria-expanded="false"
+            aria-autocomplete="list"
+            aria-haspopup="true"
+            // Indicates what option has been selected, else indicates the custom label (if selected), else indicates the first option (that is selected by default).
+            aria-label={
+                selectedOptionRef?.current?.textContent
+                    ? `Option sélectionnée : ${selectedOptionRef.current.textContent}`
+                    : label
+                    ? label
+                    : firstOption
+            }
         >
             <span ref={selectedOptionRef} className="custom-button-text">
                 {label ? label : firstOption}

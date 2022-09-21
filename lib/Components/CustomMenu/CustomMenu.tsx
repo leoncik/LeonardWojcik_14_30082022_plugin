@@ -38,6 +38,7 @@ const CustomMenu = ({
         if (customButtonRef.current.classList.contains('menu-expanded')) {
             customButtonRef.current.className = 'custom-button menu-unexpanded';
             customMenuRef.current.className = 'menu menu-close';
+            customButtonRef.current.setAttribute('aria-expanded', false);
             customButtonRef.current.focus();
         }
     };

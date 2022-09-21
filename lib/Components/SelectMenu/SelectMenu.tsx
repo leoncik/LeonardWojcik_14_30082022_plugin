@@ -96,6 +96,7 @@ const SelectMenu = ({
             customButtonRef.current.classList.remove('menu-expanded');
             customButtonRef.current.classList.add('menu-unexpanded');
             customMenuRef.current.className = 'menu menu-close';
+            customButtonRef.current.setAttribute('aria-expanded', false);
         }
         customButtonRef.current.focus();
     };
@@ -110,6 +111,7 @@ const SelectMenu = ({
                 customButtonRef.current.classList.remove('menu-expanded');
                 customButtonRef.current.classList.add('menu-unexpanded');
                 customMenuRef.current.className = 'menu menu-close';
+                customButtonRef.current.setAttribute('aria-expanded', false);
             }
         };
 
