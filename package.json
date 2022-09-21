@@ -1,7 +1,7 @@
 {
   "name": "@leoncik/p14-hrnet-plugin",
-  "version": "0.0.5",
-  "description": "",
+  "version": "0.0.6",
+  "description": "A custom select menu component made for my 14th OpenClassrooms project",
   "main": "dist/index.js",
   "scripts": {
     "build": "rollup -c",
@@ -12,8 +12,8 @@
     "coverage": "vitest run --coverage",
     "prepare": "husky install"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": ["React", "Select menu", "OpenClassrooms"],
+  "author": "leoncik",
   "license": "MIT",
   "devDependencies": {
     "@babel/core": "^7.16.7",
