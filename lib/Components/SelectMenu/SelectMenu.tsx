@@ -25,6 +25,7 @@ export interface selectMenuProps {
     offsetX?: number;
     offsetY?: number;
     buttonIconPath?: string;
+    showButtonIcon?: boolean;
 }
 
 const SelectMenu = ({
@@ -40,6 +41,7 @@ const SelectMenu = ({
     offsetX = 0,
     offsetY = 0,
     buttonIconPath = defaultButtonIcon,
+    showButtonIcon = true,
 }: selectMenuProps) => {
     // Refs
     const customButtonRef: any = useRef();
@@ -136,6 +138,7 @@ const SelectMenu = ({
                 updateNextOptionWithIndex={updateNextOptionWithIndex}
                 decrementOptionIndex={decrementOptionIndex}
                 updatePreviousOptionWithIndex={updatePreviousOptionWithIndex}
+                showButtonIcon={showButtonIcon}
             />
 
             <CustomMenu

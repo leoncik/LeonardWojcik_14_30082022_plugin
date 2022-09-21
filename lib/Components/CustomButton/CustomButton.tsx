@@ -16,6 +16,7 @@ export interface selectMenuProps {
     updatePreviousOptionWithIndex: any;
     disabled: boolean;
     buttonIconPath: string;
+    showButtonIcon: boolean;
 }
 
 const CustomButton = ({
@@ -33,6 +34,7 @@ const CustomButton = ({
     updatePreviousOptionWithIndex,
     disabled,
     buttonIconPath,
+    showButtonIcon,
 }: selectMenuProps) => {
     // Values
     const firstOption = options?.[0] || '';
@@ -121,7 +123,10 @@ const CustomButton = ({
             <span ref={selectedOptionRef} className="custom-button-text">
                 {label ? label : firstOption}
             </span>
-            <img src={buttonIconPath} className="custom-button-icon" />
+            <img
+                src={showButtonIcon ? buttonIconPath : ''}
+                className="custom-button-icon"
+            />
         </span>
     );
 };

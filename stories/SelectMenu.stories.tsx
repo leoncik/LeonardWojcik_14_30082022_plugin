@@ -1,6 +1,7 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import SelectMenu from '../lib/Components/SelectMenu/SelectMenu';
+import customIcon from './assets/colors.svg';
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
@@ -16,7 +17,7 @@ const Template: ComponentStory<typeof SelectMenu> = (args) => (
 export const Basic = Template.bind({});
 // More on args: https://storybook.js.org/docs/react/writing-stories/args
 Basic.args = {
-    options: ['Alabama', 'Alaska', 'American Samoa'],
+    options: ['Ceramic', 'Glass', 'Paper', 'Plastic', 'Stone', 'Wood'],
 };
 
 export const Scrollable = Template.bind({});
@@ -55,4 +56,12 @@ Disabled.args = {
     options: ['Magic mushroom', 'Fairy powder', 'Excalibur'],
     width: 400,
     disabled: true,
+};
+
+export const CustomIcon = Template.bind({});
+CustomIcon.args = {
+    label: 'What is your favourite colour?',
+    options: ['Blue!', 'Green', 'Red', 'Yellow', "I don't know!"],
+    width: 340,
+    buttonIconPath: customIcon,
 };
