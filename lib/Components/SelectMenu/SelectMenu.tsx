@@ -114,14 +114,33 @@ const SelectMenu = ({
     // Close select menu if clicked outside and if the menu is opened.
     useEffect(() => {
         const closeSelectMenu = (e: any) => {
-            if (
-                e.path[0] !== customButtonRef.current &&
-                customButtonRef.current.classList.contains('menu-expanded')
-            ) {
-                customButtonRef.current.classList.remove('menu-expanded');
-                customButtonRef.current.classList.add('menu-unexpanded');
-                customMenuRef.current.className = 'menu menu-close';
-                customButtonRef.current.setAttribute('aria-expanded', false);
+            // The "path" property is not supported on every brothers. Using "composedPath" as fallback.
+            if (e.path) {
+                if (
+                    e.path[0] !== customButtonRef.current &&
+                    customButtonRef.current.classList.contains('menu-expanded')
+                ) {
+                    customButtonRef.current.classList.remove('menu-expanded');
+                    customButtonRef.current.classList.add('menu-unexpanded');
+                    customMenuRef.current.className = 'menu menu-close';
+                    customButtonRef.current.setAttribute(
+                        'aria-expanded',
+                        false
+                    );
+                }
+            } else {
+                if (
+                    e.composedPath()[0] !== customButtonRef.current &&
+                    customButtonRef.current.classList.contains('menu-expanded')
+                ) {
+                    customButtonRef.current.classList.remove('menu-expanded');
+                    customButtonRef.current.classList.add('menu-unexpanded');
+                    customMenuRef.current.className = 'menu menu-close';
+                    customButtonRef.current.setAttribute(
+                        'aria-expanded',
+                        false
+                    );
+                }
             }
         };
 
