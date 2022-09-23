@@ -132,7 +132,7 @@ const SelectMenu = ({
 
     return (
         <div
-            className={className ? 'select-menu ' + className : 'select-menu'}
+            className={className ? `select-menu ${className}` : 'select-menu'}
             style={{ width: `${width}px` }}
         >
             <CustomButton

@@ -143,6 +143,19 @@ const CustomButton = ({
         }
     };
 
+    /**
+     * Indicates what option has been selected,
+     * else indicates the custom label (if selected),
+     * else indicates the first option (that is selected by default).
+     * @returns {string} Returns the aria-label of the custom button
+     */
+    const getAriaLabel = (): string => {
+        if (selectedOptionRef?.current?.textContent)
+            return `Option sélectionnée : ${selectedOptionRef.current.textContent}`;
+        if (label) return label;
+        return firstOption;
+    };
+
     return (
         <span
             tabIndex={disabled ? -1 : 0}
@@ -161,14 +174,7 @@ const CustomButton = ({
             aria-expanded="false"
             aria-autocomplete="list"
             aria-haspopup="true"
-            // Indicates what option has been selected, else indicates the custom label (if selected), else indicates the first option (that is selected by default).
-            aria-label={
-                selectedOptionRef?.current?.textContent
-                    ? `Option sélectionnée : ${selectedOptionRef.current.textContent}`
-                    : label
-                    ? label
-                    : firstOption
-            }
+            aria-label={getAriaLabel()}
         >
             <span ref={selectedOptionRef} className="custom-button-text">
                 {label ? label : firstOption}
