@@ -64,7 +64,7 @@
 }
 
 .custom-button-icon_rotated {
-    transform: rotate(60deg);
+    transform: rotate(180deg);
 }
 
 /* MENU */

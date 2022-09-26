@@ -14,6 +14,7 @@ export interface selectMenuProps {
     offsetX: number;
     offsetY: number;
     optionsValues: Array<string> | undefined;
+    closeSelectMenu: any;
 }
 
 const CustomMenu = ({
@@ -29,6 +30,7 @@ const CustomMenu = ({
     offsetX,
     offsetY,
     optionsValues,
+    closeSelectMenu,
 }: selectMenuProps) => {
     // Get height of the custom button to set menu position
     const [customButtonHeight, setCustomButtonHeight] = useState(0);
@@ -38,9 +40,7 @@ const CustomMenu = ({
 
     const closeMenu = () => {
         if (customButtonRef.current.classList.contains('menu-expanded')) {
-            customButtonRef.current.className = 'custom-button menu-unexpanded';
-            customMenuRef.current.className = 'menu menu-close';
-            customButtonRef.current.setAttribute('aria-expanded', false);
+            closeSelectMenu();
             customButtonRef.current.focus();
         }
     };

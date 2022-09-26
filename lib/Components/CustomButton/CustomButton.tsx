@@ -21,7 +21,7 @@ export interface selectMenuProps {
     optionsValues: Array<string> | undefined;
     openSelectMenu: any;
     closeSelectMenu: any;
-    rotateButtonIcon: boolean;
+    isIconRotated: boolean;
 }
 
 const CustomButton = ({
@@ -42,7 +42,7 @@ const CustomButton = ({
     buttonIconPath,
     showButtonIcon,
     hiddenSelectRef,
-    rotateButtonIcon,
+    isIconRotated,
     openSelectMenu,
     closeSelectMenu,
 }: selectMenuProps) => {
@@ -183,7 +183,7 @@ const CustomButton = ({
             <img
                 src={showButtonIcon ? buttonIconPath : ''}
                 className={`custom-button-icon ${
-                    rotateButtonIcon ? 'custom-button-icon_rotated' : ''
+                    isIconRotated ? 'custom-button-icon_rotated' : ''
                 }`}
             />
         </span>

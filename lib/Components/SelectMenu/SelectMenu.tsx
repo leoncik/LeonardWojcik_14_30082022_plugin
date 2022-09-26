@@ -65,6 +65,7 @@ const SelectMenu = ({
         useState(firstOptionValue);
     const [selectedOption, setSelectedOption] = useState();
     const [optionIndex, setOptionIndex] = useState(0);
+    const [isIconRotated, setIsIconRotated] = useState(false);
 
     // Functions
 
@@ -73,12 +74,14 @@ const SelectMenu = ({
         customButtonRef.current.classList.remove('menu-expanded');
         customButtonRef.current.classList.add('menu-unexpanded');
         customMenuRef.current.className = 'menu menu-close';
+        rotateButtonIcon && setIsIconRotated(false);
         customButtonRef.current.setAttribute('aria-expanded', false);
     };
 
     const openSelectMenu = () => {
         customButtonRef.current.classList.add('menu-expanded');
         customMenuRef.current.className = 'menu menu-open';
+        rotateButtonIcon && setIsIconRotated(true);
         customButtonRef.current.setAttribute('aria-expanded', true);
     };
 
@@ -180,7 +183,7 @@ const SelectMenu = ({
                 updatePreviousOptionWithIndex={updatePreviousOptionWithIndex}
                 showButtonIcon={showButtonIcon}
                 optionsValues={optionsValues}
-                rotateButtonIcon={rotateButtonIcon}
+                isIconRotated={isIconRotated}
                 closeSelectMenu={closeSelectMenu}
                 openSelectMenu={openSelectMenu}
             />
@@ -198,6 +201,7 @@ const SelectMenu = ({
                 offsetX={offsetX}
                 offsetY={offsetY}
                 optionsValues={optionsValues}
+                closeSelectMenu={closeSelectMenu}
             />
 
             <HiddenSelect

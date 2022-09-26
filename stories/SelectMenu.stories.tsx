@@ -64,4 +64,5 @@ CustomIcon.args = {
     options: ['Blue!', 'Green', 'Red', 'Yellow', "I don't know!"],
     width: 340,
     buttonIconPath: customIcon,
+    rotateButtonIcon: false,
 };
