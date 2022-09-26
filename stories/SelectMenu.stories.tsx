@@ -50,6 +50,9 @@ Scrollable.args = {
     ],
 };
 
+export const EmptyOptions = Template.bind({});
+EmptyOptions.args = {};
+
 export const Disabled = Template.bind({});
 Disabled.args = {
     label: 'No one shall trigger me!',

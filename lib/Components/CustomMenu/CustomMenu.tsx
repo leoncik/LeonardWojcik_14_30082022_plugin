@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 // import './SelectMenu.css';
 
 export interface selectMenuProps {
-    options: Array<string>;
+    options: Array<string> | undefined;
     customMenuRef: any;
     handleSelectOption: any;
     width?: number | boolean;
@@ -97,7 +97,7 @@ const CustomMenu = ({
                     maxHeight: scrollable ? `${maxHeight}px` : 'auto',
                 }}
             >
-                {options.map((option: string, index: number) => (
+                {options?.map((option: string, index: number) => (
                     <li
                         tabIndex={0}
                         onKeyDown={(e: any) => {

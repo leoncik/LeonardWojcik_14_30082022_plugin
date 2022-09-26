@@ -161,10 +161,10 @@ const CustomButton = ({
         <span
             tabIndex={disabled ? -1 : 0}
             onKeyDown={(e) => {
-                handleMenuNavigation(e);
+                options.length > 0 && handleMenuNavigation(e);
             }}
             ref={customButtonRef}
-            onClick={triggerMenu}
+            onClick={() => options.length > 0 && triggerMenu()}
             className={
                 disabled
                     ? 'button-disabled custom-button menu-unexpanded ui-selectmenu-button'

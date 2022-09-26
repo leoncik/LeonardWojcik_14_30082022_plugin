@@ -13,7 +13,7 @@ import HiddenSelect from '../HiddenSelect/HiddenSelect';
 import defaultButtonIcon from '../../assets/chevron-down.svg';
 
 export interface selectMenuProps {
-    options: Array<string>;
+    options?: Array<string>;
     optionsValues?: Array<string> | undefined;
     label?: string;
     id?: string;
@@ -33,7 +33,7 @@ export interface selectMenuProps {
 const SelectMenu = ({
     label,
     id,
-    options,
+    options = [],
     inputRef,
     width = 210,
     className,
