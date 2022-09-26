@@ -25,6 +25,5 @@ export default {
         babel(),
         image()
     ],
-    external: ['styled-components'],
-    globals: { 'styled-components': 'styled' },
+    external: ['styled-components']
 }
