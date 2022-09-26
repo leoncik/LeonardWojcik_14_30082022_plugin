@@ -18,7 +18,7 @@ export interface selectMenuProps {
     label?: string;
     id?: string;
     inputRef?: HTMLOptionElement | undefined;
-    width?: number | boolean;
+    width?: number;
     className?: string;
     disabled?: boolean;
     maxHeight?: any;
@@ -28,6 +28,14 @@ export interface selectMenuProps {
     buttonIconPath?: string;
     showButtonIcon?: boolean;
     rotateButtonIcon?: boolean;
+    optionsFontSize?: string | undefined;
+    mainColor?: string;
+    optionTextColor?: string;
+    optionTextFocus?: string;
+    buttonTextColor?: string;
+    buttonTextHoverColor?: string;
+    buttonBackgroundHoverColor?: string;
+    buttonTextActiveColor?: string;
 }
 
 const SelectMenu = ({
@@ -46,6 +54,14 @@ const SelectMenu = ({
     showButtonIcon = true,
     optionsValues,
     rotateButtonIcon = true,
+    optionsFontSize,
+    mainColor = '#007fff',
+    optionTextColor = 'black',
+    optionTextFocus = 'white',
+    buttonBackgroundHoverColor = '#ededed',
+    buttonTextColor = '#454545',
+    buttonTextHoverColor = '#2b2b2b',
+    buttonTextActiveColor = 'white',
 }: selectMenuProps) => {
     // Refs
     const customButtonRef: any = useRef();
@@ -186,6 +202,11 @@ const SelectMenu = ({
                 isIconRotated={isIconRotated}
                 closeSelectMenu={closeSelectMenu}
                 openSelectMenu={openSelectMenu}
+                mainColor={mainColor}
+                buttonTextColor={buttonTextColor}
+                buttonTextActiveColor={buttonTextActiveColor}
+                buttonTextHoverColor={buttonTextHoverColor}
+                buttonBackgroundHoverColor={buttonBackgroundHoverColor}
             />
 
             <CustomMenu
@@ -202,6 +223,10 @@ const SelectMenu = ({
                 offsetY={offsetY}
                 optionsValues={optionsValues}
                 closeSelectMenu={closeSelectMenu}
+                optionsFontSize={optionsFontSize}
+                mainColor={mainColor}
+                optionTextColor={optionTextColor}
+                optionTextFocus={optionTextFocus}
             />
 
             <HiddenSelect

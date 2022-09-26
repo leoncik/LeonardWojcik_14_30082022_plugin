@@ -24,5 +24,7 @@ export default {
         uglify(),
         babel(),
         image()
-    ]
+    ],
+    external: ['styled-components'],
+    globals: { 'styled-components': 'styled' },
 }

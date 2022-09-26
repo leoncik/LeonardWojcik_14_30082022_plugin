@@ -68,4 +68,26 @@ CustomIcon.args = {
     width: 340,
     buttonIconPath: customIcon,
     rotateButtonIcon: false,
+    optionsFontSize: '24px',
+};
+
+export const CustomColorsAndOffsetY = Template.bind({});
+CustomColorsAndOffsetY.args = {
+    options: [
+        'Branchiura',
+        'Hexapoda',
+        'Mystacocarida',
+        'Ostracoda',
+        'Thecostraca',
+    ],
+    rotateButtonIcon: false,
+    offsetY: 6,
+    optionsFontSize: '18px',
+    mainColor: '#0ebbb2',
+    optionTextColor: 'crimson',
+    optionTextFocus: 'white',
+    buttonTextColor: '#007062',
+    buttonTextHoverColor: 'white',
+    buttonBackgroundHoverColor: '#19c0aa',
+    buttonTextActiveColor: '#1521c2',
 };

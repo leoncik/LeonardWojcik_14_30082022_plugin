@@ -1,5 +1,25 @@
+// React Hooks
 import React from 'react';
-// import './SelectMenu.css';
+
+// Styled components
+import styled from 'styled-components';
+const Button = styled.li<{
+    activeBackgroundColor: string;
+    hoverBackgroundColor: string;
+    textColor: string;
+    textHoverColor: string;
+    textActiveColor: string;
+}>`
+    color: ${({ textColor }) => textColor};
+    &:hover {
+        color: ${({ textHoverColor }) => textHoverColor};
+        background: ${({ hoverBackgroundColor }) => hoverBackgroundColor};
+    }
+    &:active {
+        background: ${({ activeBackgroundColor }) => activeBackgroundColor};
+        color: ${({ textActiveColor }) => textActiveColor};
+    }
+`;
 
 export interface selectMenuProps {
     options: Array<string>;
@@ -22,6 +42,11 @@ export interface selectMenuProps {
     openSelectMenu: any;
     closeSelectMenu: any;
     isIconRotated: boolean;
+    mainColor: string;
+    buttonTextColor: string;
+    buttonTextHoverColor: string;
+    buttonBackgroundHoverColor: string;
+    buttonTextActiveColor: string;
 }
 
 const CustomButton = ({
@@ -45,6 +70,11 @@ const CustomButton = ({
     isIconRotated,
     openSelectMenu,
     closeSelectMenu,
+    mainColor,
+    buttonTextColor,
+    buttonTextHoverColor,
+    buttonBackgroundHoverColor,
+    buttonTextActiveColor,
 }: selectMenuProps) => {
     // Values
     const firstOption = options?.[0] || '';
@@ -158,7 +188,12 @@ const CustomButton = ({
     };
 
     return (
-        <span
+        <Button
+            activeBackgroundColor={mainColor}
+            hoverBackgroundColor={buttonBackgroundHoverColor}
+            textColor={buttonTextColor}
+            textHoverColor={buttonTextHoverColor}
+            textActiveColor={buttonTextActiveColor}
             tabIndex={disabled ? -1 : 0}
             onKeyDown={(e) => {
                 options.length > 0 && handleMenuNavigation(e);
@@ -186,7 +221,7 @@ const CustomButton = ({
                     isIconRotated ? 'custom-button-icon_rotated' : ''
                 }`}
             />
-        </span>
+        </Button>
     );
 };
 

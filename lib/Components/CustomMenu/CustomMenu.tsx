@@ -1,11 +1,31 @@
+// React Hooks
 import React, { useEffect, useState } from 'react';
-// import './SelectMenu.css';
+
+// Styled components
+import styled from 'styled-components';
+const Option = styled.li<{
+    initialTextColor: string;
+    activeBackgroundColor: string;
+    hoverTextColor: string;
+    optionWidth: number;
+    optionFontSize: string | undefined;
+}>`
+    color: ${({ initialTextColor }) => initialTextColor};
+    width: ${({ optionWidth }) => `${optionWidth}px`};
+    font-size: ${({ optionFontSize }) =>
+        optionFontSize ? `${optionFontSize}` : ''};
+    &:hover,
+    &:focus {
+        color: ${({ hoverTextColor }) => hoverTextColor};
+        background: ${({ activeBackgroundColor }) => activeBackgroundColor};
+    }
+`;
 
 export interface selectMenuProps {
     options: Array<string> | undefined;
     customMenuRef: any;
     handleSelectOption: any;
-    width?: number | boolean;
+    width: number;
     customButtonRef: any;
     saveOption: any;
     saveOptionIndex: any;
@@ -15,6 +35,10 @@ export interface selectMenuProps {
     offsetY: number;
     optionsValues: Array<string> | undefined;
     closeSelectMenu: any;
+    optionsFontSize: string | undefined;
+    mainColor: string;
+    optionTextColor: string;
+    optionTextFocus: string;
 }
 
 const CustomMenu = ({
@@ -31,6 +55,10 @@ const CustomMenu = ({
     offsetY,
     optionsValues,
     closeSelectMenu,
+    optionsFontSize,
+    mainColor,
+    optionTextColor,
+    optionTextFocus,
 }: selectMenuProps) => {
     // Get height of the custom button to set menu position
     const [customButtonHeight, setCustomButtonHeight] = useState(0);
@@ -98,7 +126,12 @@ const CustomMenu = ({
                 }}
             >
                 {options?.map((option: string, index: number) => (
-                    <li
+                    <Option
+                        initialTextColor={optionTextColor}
+                        activeBackgroundColor={mainColor}
+                        hoverTextColor={optionTextFocus}
+                        optionWidth={width}
+                        optionFontSize={optionsFontSize}
                         tabIndex={0}
                         onKeyDown={(e: any) => {
                             handleMenuNavigation(e);
@@ -111,13 +144,12 @@ const CustomMenu = ({
                         onMouseOver={(e: any) => e.target.focus()}
                         className="menu-item"
                         key={index}
-                        style={{ width: `${width}px` }}
                         data-option-value={
                             optionsValues ? optionsValues[index] : option
                         }
                     >
                         {option}
-                    </li>
+                    </Option>
                 ))}
             </ul>
         </div>

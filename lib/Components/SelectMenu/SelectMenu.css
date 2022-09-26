@@ -16,10 +16,9 @@
     white-space: nowrap;
     /* width: 14em; */
     border-radius: 3px;
-    color: #454545;
     text-decoration: none;
     border: 1px solid #c5c5c5;
-    background: #f6f6f6;
+    /* background: #f6f6f6; */
     font-weight: normal;
     font-size: 1rem;
     padding: 0.4em 1em;
@@ -40,18 +39,15 @@
     justify-content: space-between;
     align-items: center;
 }
-.custom-button:hover {
+/* .custom-button:hover {
     border: 1px solid #cccccc;
-    background: #ededed;
     font-weight: normal;
-    color: #2b2b2b;
 }
 .custom-button:active {
     border: 1px solid #003eff;
-    background: #007fff;
+    background: #006cd8;
     font-weight: normal;
-    color: #ffffff;
-}
+} */
 
 .button-disabled {
     opacity: 0.45;
@@ -108,10 +104,10 @@
 
 .menu-item {
     cursor: pointer;
+    padding: 3px 1em 3px 0.4em;
 }
-.menu-item:hover,
+/* .menu-item:hover,
 .menu-item:focus {
-    background: #007fff;
     font-weight: normal;
     color: #ffffff;
-}
+} */
