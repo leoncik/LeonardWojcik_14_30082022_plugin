@@ -63,6 +63,10 @@
     pointer-events: none;
 }
 
+.custom-button-icon_rotated {
+    transform: rotate(60deg);
+}
+
 /* MENU */
 
 .menu-wrapper {

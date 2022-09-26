@@ -19,6 +19,9 @@ export interface selectMenuProps {
     showButtonIcon: boolean;
     hiddenSelectRef: any;
     optionsValues: Array<string> | undefined;
+    openSelectMenu: any;
+    closeSelectMenu: any;
+    rotateButtonIcon: boolean;
 }
 
 const CustomButton = ({
@@ -39,6 +42,9 @@ const CustomButton = ({
     buttonIconPath,
     showButtonIcon,
     hiddenSelectRef,
+    rotateButtonIcon,
+    openSelectMenu,
+    closeSelectMenu,
 }: selectMenuProps) => {
     // Values
     const firstOption = options?.[0] || '';
@@ -46,16 +52,11 @@ const CustomButton = ({
 
     const triggerMenu = () => {
         if (!customButtonRef.current.classList.contains('menu-expanded')) {
-            customButtonRef.current.classList.add('menu-expanded');
-            customMenuRef.current.className = 'menu menu-open';
-            customButtonRef.current.setAttribute('aria-expanded', true);
+            openSelectMenu();
         } else if (
             customButtonRef.current.classList.contains('menu-expanded')
         ) {
-            customButtonRef.current.classList.remove('menu-expanded');
-            customButtonRef.current.classList.add('menu-unexpanded');
-            customMenuRef.current.className = 'menu menu-close';
-            customButtonRef.current.setAttribute('aria-expanded', false);
+            closeSelectMenu();
         }
         // Set focus on selected option or on first option (if using a custom label or if for some reason the option could not be selected)
         selectedOption
@@ -181,7 +182,9 @@ const CustomButton = ({
             </span>
             <img
                 src={showButtonIcon ? buttonIconPath : ''}
-                className="custom-button-icon"
+                className={`custom-button-icon ${
+                    rotateButtonIcon ? 'custom-button-icon_rotated' : ''
+                }`}
             />
         </span>
     );

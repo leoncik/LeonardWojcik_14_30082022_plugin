@@ -27,6 +27,7 @@ export interface selectMenuProps {
     offsetY?: number;
     buttonIconPath?: string;
     showButtonIcon?: boolean;
+    rotateButtonIcon?: boolean;
 }
 
 const SelectMenu = ({
@@ -44,6 +45,7 @@ const SelectMenu = ({
     buttonIconPath = defaultButtonIcon,
     showButtonIcon = true,
     optionsValues,
+    rotateButtonIcon = true,
 }: selectMenuProps) => {
     // Refs
     const customButtonRef: any = useRef();
@@ -64,31 +66,54 @@ const SelectMenu = ({
     const [selectedOption, setSelectedOption] = useState();
     const [optionIndex, setOptionIndex] = useState(0);
 
-    const saveOption = (e: any) => {
-        setSelectedOption(e.target);
+    // Functions
+
+    // Open / Close functions
+    const closeSelectMenu = () => {
+        customButtonRef.current.classList.remove('menu-expanded');
+        customButtonRef.current.classList.add('menu-unexpanded');
+        customMenuRef.current.className = 'menu menu-close';
+        customButtonRef.current.setAttribute('aria-expanded', false);
     };
 
-    const saveOptionIndex = (e: any) => {
-        setOptionIndex(
-            Array.from(e.target.parentNode.children).indexOf(e.target)
-        );
+    const openSelectMenu = () => {
+        customButtonRef.current.classList.add('menu-expanded');
+        customMenuRef.current.className = 'menu menu-open';
+        customButtonRef.current.setAttribute('aria-expanded', true);
     };
-    const incrementOptionIndex = () => {
-        setOptionIndex(optionIndex + 1);
-    };
-    const decrementOptionIndex = () => {
-        setOptionIndex(optionIndex - 1);
-    };
-    // Todo : refactor update functions inside a single function.
-    const updateNextOptionWithIndex = (e: any) => {
-        setSelectedOption(
-            e.target.nextElementSibling.firstChild.children[optionIndex + 1]
-        );
-    };
-    const updatePreviousOptionWithIndex = (e: any) => {
-        setSelectedOption(
-            e.target.nextElementSibling.firstChild.children[optionIndex - 1]
-        );
+
+    // Close select menu if clicked outside and if the menu is opened.
+    useEffect(() => {
+        const closeSelectMenuOnOutsideClick = (e: any) => {
+            // The "path" property is not supported on every brothers. Using "composedPath" as fallback.
+            if (e.path) {
+                if (
+                    e.path[0] !== customButtonRef.current &&
+                    customButtonRef.current.classList.contains('menu-expanded')
+                ) {
+                    closeSelectMenu();
+                }
+            } else {
+                if (
+                    e.composedPath()[0] !== customButtonRef.current &&
+                    customButtonRef.current.classList.contains('menu-expanded')
+                ) {
+                    closeSelectMenu();
+                }
+            }
+        };
+
+        document.body.addEventListener('click', closeSelectMenuOnOutsideClick);
+        return () =>
+            document.body.removeEventListener(
+                'click',
+                closeSelectMenuOnOutsideClick
+            );
+    }, []);
+
+    // Save option functions
+    const saveOption = (e: any) => {
+        setSelectedOption(e.target);
     };
 
     const handleSelectOption = (e: any) => {
@@ -103,51 +128,34 @@ const SelectMenu = ({
         }
         // Close menu if opened
         if (customButtonRef.current.classList.contains('menu-expanded')) {
-            customButtonRef.current.classList.remove('menu-expanded');
-            customButtonRef.current.classList.add('menu-unexpanded');
-            customMenuRef.current.className = 'menu menu-close';
-            customButtonRef.current.setAttribute('aria-expanded', false);
+            closeSelectMenu();
         }
         customButtonRef.current.focus();
     };
 
-    // Close select menu if clicked outside and if the menu is opened.
-    useEffect(() => {
-        const closeSelectMenu = (e: any) => {
-            // The "path" property is not supported on every brothers. Using "composedPath" as fallback.
-            if (e.path) {
-                if (
-                    e.path[0] !== customButtonRef.current &&
-                    customButtonRef.current.classList.contains('menu-expanded')
-                ) {
-                    customButtonRef.current.classList.remove('menu-expanded');
-                    customButtonRef.current.classList.add('menu-unexpanded');
-                    customMenuRef.current.className = 'menu menu-close';
-                    customButtonRef.current.setAttribute(
-                        'aria-expanded',
-                        false
-                    );
-                }
-            } else {
-                if (
-                    e.composedPath()[0] !== customButtonRef.current &&
-                    customButtonRef.current.classList.contains('menu-expanded')
-                ) {
-                    customButtonRef.current.classList.remove('menu-expanded');
-                    customButtonRef.current.classList.add('menu-unexpanded');
-                    customMenuRef.current.className = 'menu menu-close';
-                    customButtonRef.current.setAttribute(
-                        'aria-expanded',
-                        false
-                    );
-                }
-            }
-        };
+    // Functions to handle keyboard navigation
+    const saveOptionIndex = (e: any) => {
+        setOptionIndex(
+            Array.from(e.target.parentNode.children).indexOf(e.target)
+        );
+    };
+    const incrementOptionIndex = () => {
+        setOptionIndex(optionIndex + 1);
+    };
+    const decrementOptionIndex = () => {
+        setOptionIndex(optionIndex - 1);
+    };
 
-        document.body.addEventListener('click', closeSelectMenu);
-        return () =>
-            document.body.removeEventListener('click', closeSelectMenu);
-    }, []);
+    const updateNextOptionWithIndex = (e: any) => {
+        setSelectedOption(
+            e.target.nextElementSibling.firstChild.children[optionIndex + 1]
+        );
+    };
+    const updatePreviousOptionWithIndex = (e: any) => {
+        setSelectedOption(
+            e.target.nextElementSibling.firstChild.children[optionIndex - 1]
+        );
+    };
 
     return (
         <div
@@ -172,6 +180,9 @@ const SelectMenu = ({
                 updatePreviousOptionWithIndex={updatePreviousOptionWithIndex}
                 showButtonIcon={showButtonIcon}
                 optionsValues={optionsValues}
+                rotateButtonIcon={rotateButtonIcon}
+                closeSelectMenu={closeSelectMenu}
+                openSelectMenu={openSelectMenu}
             />
 
             <CustomMenu
