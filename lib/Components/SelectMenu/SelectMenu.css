@@ -63,6 +63,12 @@
     transform: rotate(180deg);
 }
 
+.custom-button-text {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
 /* MENU */
 
 .menu-wrapper {

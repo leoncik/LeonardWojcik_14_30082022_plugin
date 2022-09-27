@@ -91,3 +91,16 @@ CustomColorsAndOffsetY.args = {
     buttonBackgroundHoverColor: '#19c0aa',
     buttonTextActiveColor: '#1521c2',
 };
+
+export const LongText = Template.bind({});
+LongText.args = {
+    label: 'Pick an inspiring quote',
+    options: [
+        'Coffee is a beverage that puts one to sleep when not drank',
+        'Children find everything in nothing; men find nothing in everything.',
+        'I bear the wounds of all the battles I avoided.',
+        'Who let the fridge open?',
+    ],
+    width: 250,
+    optionsFontSize: '18px',
+};
