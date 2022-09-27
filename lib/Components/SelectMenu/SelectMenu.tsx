@@ -164,6 +164,12 @@ const SelectMenu = ({
     const decrementOptionIndex = () => {
         setOptionIndex(optionIndex - 1);
     };
+    const setToLastOptionIndex = () => {
+        setOptionIndex(options.length - 1);
+    };
+    const setToLFirstOptionIndex = () => {
+        setOptionIndex(0);
+    };
 
     const updateNextOptionWithIndex = (e: any) => {
         setSelectedOption(
@@ -174,6 +180,12 @@ const SelectMenu = ({
         setSelectedOption(
             e.target.nextElementSibling.firstChild.children[optionIndex - 1]
         );
+    };
+    const updateLastOptionWithIndex = (e: any) => {
+        setSelectedOption(e.target.nextElementSibling.firstChild.lastChild);
+    };
+    const updateFirstOptionWithIndex = (e: any) => {
+        setSelectedOption(e.target.nextElementSibling.firstChild.firstChild);
     };
 
     return (
@@ -195,6 +207,10 @@ const SelectMenu = ({
                 buttonIconPath={buttonIconPath}
                 incrementOptionIndex={incrementOptionIndex}
                 updateNextOptionWithIndex={updateNextOptionWithIndex}
+                updateLastOptionWithIndex={updateLastOptionWithIndex}
+                setToLastOptionIndex={setToLastOptionIndex}
+                setToLFirstOptionIndex={setToLFirstOptionIndex}
+                updateFirstOptionWithIndex={updateFirstOptionWithIndex}
                 decrementOptionIndex={decrementOptionIndex}
                 updatePreviousOptionWithIndex={updatePreviousOptionWithIndex}
                 showButtonIcon={showButtonIcon}

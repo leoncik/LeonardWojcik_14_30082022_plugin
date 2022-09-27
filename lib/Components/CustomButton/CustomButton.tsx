@@ -32,6 +32,10 @@ export interface selectMenuProps {
     optionIndex: number;
     incrementOptionIndex: any;
     updateNextOptionWithIndex: any;
+    updateLastOptionWithIndex: any;
+    setToLastOptionIndex: any;
+    setToLFirstOptionIndex: any;
+    updateFirstOptionWithIndex: any;
     decrementOptionIndex: any;
     updatePreviousOptionWithIndex: any;
     disabled: boolean;
@@ -61,6 +65,10 @@ const CustomButton = ({
     optionIndex,
     incrementOptionIndex,
     updateNextOptionWithIndex,
+    updateLastOptionWithIndex,
+    setToLastOptionIndex,
+    setToLFirstOptionIndex,
+    updateFirstOptionWithIndex,
     decrementOptionIndex,
     updatePreviousOptionWithIndex,
     disabled,
@@ -150,9 +158,50 @@ const CustomButton = ({
         }
     };
 
+    const selectLastOption = (e: any) => {
+        // Select the last option.
+        selectedOptionRef.current.textContent =
+            e.target.nextElementSibling.firstChild.lastChild.textContent;
+        updateLastOptionWithIndex(e);
+        setToLastOptionIndex();
+        // Save option in hidden select (use optionsValues if available. Else use option text content)
+        hiddenSelectRef.current.firstChild.textContent =
+            e.target.nextElementSibling.firstChild.lastChild.textContent;
+        if (optionsValues) {
+            hiddenSelectRef.current.firstChild.value =
+                e.target.nextElementSibling.firstChild.lastChild.textContent.getAttribute(
+                    'data-option-value'
+                );
+        } else {
+            hiddenSelectRef.current.firstChild.value =
+                e.target.nextElementSibling.firstChild.lastChild.textContent;
+        }
+    };
+
+    const selectFirstOption = (e: any) => {
+        // Select the first option.
+        selectedOptionRef.current.textContent =
+            e.target.nextElementSibling.firstChild.firstChild.textContent;
+        updateFirstOptionWithIndex(e);
+        setToLFirstOptionIndex();
+        // Save option in hidden select (use optionsValues if available. Else use option text content)
+        hiddenSelectRef.current.firstChild.textContent =
+            e.target.nextElementSibling.firstChild.firstChild.textContent;
+        if (optionsValues) {
+            hiddenSelectRef.current.firstChild.value =
+                e.target.nextElementSibling.firstChild.firstChild.textContent.getAttribute(
+                    'data-option-value'
+                );
+        } else {
+            hiddenSelectRef.current.firstChild.value =
+                e.target.nextElementSibling.firstChild.firstChild.textContent;
+        }
+    };
+
     const handleMenuNavigation = (e: any) => {
         switch (e.code) {
             case 'Enter':
+            case 'Space':
                 triggerMenu();
                 break;
 
@@ -167,6 +216,16 @@ const CustomButton = ({
             case 'ArrowRight':
                 // Select next option if It exists
                 selectNextOption(e);
+                break;
+
+            case 'PageDown':
+            case 'End':
+                selectLastOption(e);
+                break;
+
+            case 'PageUp':
+            case 'Home':
+                selectFirstOption(e);
                 break;
 
             default:
@@ -210,12 +269,15 @@ const CustomButton = ({
             aria-expanded="false"
             aria-autocomplete="list"
             aria-haspopup="true"
+            aria-live="polite"
             aria-label={getAriaLabel()}
         >
             <span ref={selectedOptionRef} className="custom-button-text">
                 {label ? label : firstOption}
             </span>
             <img
+                alt=""
+                aria-hidden="true"
                 src={showButtonIcon ? buttonIconPath : ''}
                 className={`custom-button-icon ${
                     isIconRotated ? 'custom-button-icon_rotated' : ''

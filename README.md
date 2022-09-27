@@ -7,6 +7,7 @@ Project carried out as part of the Front-End Web Development Career Path of Open
 -   [Description](#description)
     -   [Scenario](#scenario)
     -   [About the plugin](#about-the-plugin)
+    -   [Keyboard interaction](#keyboard-interaction)
 -   [How to use](#how-to-use)
     -   [Use the plugin in your project](#use-the-plugin-in-your-project)
     -   [Work on the plugin](#work-on-the-plugin)
@@ -26,6 +27,25 @@ The old app was relying on several JQuert plugins and I had to convert one into 
 ### About the plugin
 
 In order to convert the original plugin into a React component, I had to make some changes to follow React's philosophy. However, I tried to keep the same structure and implement all the features that were present in the original plugin. I have also added additional features that I have considered useful to add (like a scroll bar when the list of options is long).
+
+### Keyboard interaction
+
+When the menu is open, the following key commands are available:
+
+-   `UP/LEFT`: Move focus to the previous item.
+-   `DOWN/RIGHT`: Move focus to the next item.
+-   `END/PAGE DOWN`: Move focus to the last item.
+-   `HOME/PAGE UP`: Move focus to the first item.
+-   `ESCAPE`: Close the menu.
+-   `ENTER/SPACE`: Select the currently focused item and close the menu.
+
+When the menu is closed, the following key commands are available:
+
+-   `UP/LEFT`: Select the previous item.
+-   `DOWN/RIGHT`: Select the next item.
+-   `END/PAGE DOWN`: Select the last item.
+-   `HOME/PAGE UP`: Select the first item.
+-   `ENTER/SPACE`: Open the menu.
 
 ## How to use
 

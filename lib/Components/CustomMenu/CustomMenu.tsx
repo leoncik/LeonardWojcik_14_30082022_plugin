@@ -103,6 +103,18 @@ const CustomMenu = ({
                     e.target.nextElementSibling.focus();
                 break;
 
+            case 'PageDown':
+            case 'End':
+                // Set focus to last option
+                e.target.parentNode.lastChild.focus();
+                break;
+
+            case 'PageUp':
+            case 'Home':
+                // Set focus to first option
+                e.target.parentNode.firstChild.focus();
+                break;
+
             default:
                 break;
         }
