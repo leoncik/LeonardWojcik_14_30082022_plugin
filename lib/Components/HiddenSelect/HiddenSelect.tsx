@@ -2,11 +2,11 @@ import React from 'react';
 
 export interface selectMenuProps {
     id: string | undefined;
-    hiddenSelectRef: any;
-    hiddenOptionText: any;
-    hiddenOptionValue: any;
-    inputRef: any;
-    optionsValues: any;
+    hiddenSelectRef: React.RefObject<HTMLSelectElement>;
+    hiddenOptionText: string;
+    hiddenOptionValue: string;
+    inputRef: React.RefObject<HTMLOptionElement> | undefined;
+    optionsValues: Array<string> | undefined;
 }
 
 const HiddenSelect = ({

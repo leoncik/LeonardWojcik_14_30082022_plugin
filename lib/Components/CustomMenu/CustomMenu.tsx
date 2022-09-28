@@ -26,7 +26,7 @@ export interface selectMenuProps {
     customMenuRef: any;
     handleSelectOption: any;
     width: number;
-    customButtonRef: any;
+    customButtonRef: React.RefObject<HTMLSpanElement>;
     saveOption: any;
     saveOptionIndex: any;
     maxHeight: number;
@@ -63,11 +63,12 @@ const CustomMenu = ({
     // Get height of the custom button to set menu position
     const [customButtonHeight, setCustomButtonHeight] = useState(0);
     useEffect(() => {
-        setCustomButtonHeight(customButtonRef.current.offsetHeight);
+        customButtonRef.current &&
+            setCustomButtonHeight(customButtonRef.current.offsetHeight);
     }, []);
 
     const closeMenu = () => {
-        if (customButtonRef.current.classList.contains('menu-expanded')) {
+        if (customButtonRef?.current?.classList.contains('menu-expanded')) {
             closeSelectMenu();
             customButtonRef.current.focus();
         }

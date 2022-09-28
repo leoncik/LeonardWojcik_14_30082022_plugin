@@ -17,11 +17,11 @@ export interface selectMenuProps {
     optionsValues?: Array<string> | undefined;
     label?: string;
     id?: string;
-    inputRef?: HTMLOptionElement | undefined;
+    inputRef?: React.RefObject<HTMLOptionElement> | undefined;
     width?: number;
     className?: string;
     disabled?: boolean;
-    maxHeight?: any;
+    maxHeight?: number;
     scrollable?: boolean;
     offsetX?: number;
     offsetY?: number;
@@ -64,10 +64,10 @@ const SelectMenu = ({
     buttonTextActiveColor = 'white',
 }: selectMenuProps) => {
     // Refs
-    const customButtonRef: any = useRef();
-    const selectedOptionRef: any = useRef();
-    const customMenuRef: any = useRef();
-    const hiddenSelectRef: any = useRef();
+    const customButtonRef = useRef<HTMLSpanElement>(null);
+    const selectedOptionRef = useRef<HTMLSpanElement>(null);
+    const customMenuRef = useRef<HTMLUListElement>(null);
+    const hiddenSelectRef = useRef<HTMLSelectElement>(null);
 
     // Values
     const firstOption = options?.[0] || '';
@@ -87,18 +87,20 @@ const SelectMenu = ({
 
     // Open / Close functions
     const closeSelectMenu = () => {
-        customButtonRef.current.classList.remove('menu-expanded');
-        customButtonRef.current.classList.add('menu-unexpanded');
-        customMenuRef.current.className = 'menu menu-close';
+        customButtonRef?.current?.classList.remove('menu-expanded');
+        customButtonRef?.current?.classList.add('menu-unexpanded');
+        // eslint-disable-next-line  @typescript-eslint/no-non-null-assertion
+        customMenuRef.current!.className = 'menu menu-close';
         rotateButtonIcon && setIsIconRotated(false);
-        customButtonRef.current.setAttribute('aria-expanded', false);
+        customButtonRef?.current?.setAttribute('aria-expanded', 'false');
     };
 
     const openSelectMenu = () => {
-        customButtonRef.current.classList.add('menu-expanded');
-        customMenuRef.current.className = 'menu menu-open';
+        customButtonRef?.current?.classList.add('menu-expanded');
+        // eslint-disable-next-line  @typescript-eslint/no-non-null-assertion
+        customMenuRef.current!.className = 'menu menu-open';
         rotateButtonIcon && setIsIconRotated(true);
-        customButtonRef.current.setAttribute('aria-expanded', true);
+        customButtonRef?.current?.setAttribute('aria-expanded', 'true');
     };
 
     // Close select menu if clicked outside and if the menu is opened.
@@ -108,14 +110,18 @@ const SelectMenu = ({
             if (e.path) {
                 if (
                     e.path[0] !== customButtonRef.current &&
-                    customButtonRef.current.classList.contains('menu-expanded')
+                    customButtonRef?.current?.classList.contains(
+                        'menu-expanded'
+                    )
                 ) {
                     closeSelectMenu();
                 }
             } else {
                 if (
                     e.composedPath()[0] !== customButtonRef.current &&
-                    customButtonRef.current.classList.contains('menu-expanded')
+                    customButtonRef?.current?.classList.contains(
+                        'menu-expanded'
+                    )
                 ) {
                     closeSelectMenu();
                 }
@@ -140,16 +146,17 @@ const SelectMenu = ({
     };
 
     const selectOption = (e: any) => {
-        selectedOptionRef.current.textContent = e.target.textContent;
+        // eslint-disable-next-line  @typescript-eslint/no-non-null-assertion
+        selectedOptionRef.current!.textContent = e.target.textContent;
         setHiddenOptionText(e.target.textContent);
         if (optionsValues) {
             setHiddenOptionValue(e.target.getAttribute('data-option-value'));
         }
         // Close menu if opened
-        if (customButtonRef.current.classList.contains('menu-expanded')) {
+        if (customButtonRef?.current?.classList.contains('menu-expanded')) {
             closeSelectMenu();
         }
-        customButtonRef.current.focus();
+        customButtonRef?.current?.focus();
     };
 
     // Functions to handle keyboard navigation

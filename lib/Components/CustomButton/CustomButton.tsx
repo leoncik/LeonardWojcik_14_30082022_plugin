@@ -3,7 +3,7 @@ import React from 'react';
 
 // Styled components
 import styled from 'styled-components';
-const Button = styled.li<{
+const Button = styled.span<{
     activeBackgroundColor: string;
     hoverBackgroundColor: string;
     textColor: string;
@@ -24,9 +24,9 @@ const Button = styled.li<{
 export interface selectMenuProps {
     options: Array<string>;
     label?: string;
-    customButtonRef?: any;
-    customMenuRef?: any;
-    selectedOptionRef?: any;
+    customButtonRef?: React.RefObject<HTMLSpanElement>;
+    customMenuRef: any;
+    selectedOptionRef: React.RefObject<HTMLSpanElement>;
     width?: number | boolean;
     selectedOption: any;
     optionIndex: number;
@@ -89,10 +89,10 @@ const CustomButton = ({
     // const iconPathTest = require("../../assets/chevron-down.svg") as string;
 
     const triggerMenu = () => {
-        if (!customButtonRef.current.classList.contains('menu-expanded')) {
+        if (!customButtonRef?.current?.classList.contains('menu-expanded')) {
             openSelectMenu();
         } else if (
-            customButtonRef.current.classList.contains('menu-expanded')
+            customButtonRef?.current?.classList.contains('menu-expanded')
         ) {
             closeSelectMenu();
         }
@@ -104,7 +104,11 @@ const CustomButton = ({
 
     const selectNextOption = (e: any) => {
         // If there is another option available after the one that is currently active, select this option.
-        if (e.target.nextElementSibling.firstChild.children[optionIndex + 1]) {
+        // Note : we check "selectedOptionRef.current" for typing reasons.
+        if (
+            e.target.nextElementSibling.firstChild.children[optionIndex + 1] &&
+            selectedOptionRef.current
+        ) {
             selectedOptionRef.current.textContent =
                 e.target.nextElementSibling.firstChild.children[
                     optionIndex + 1
@@ -132,7 +136,11 @@ const CustomButton = ({
 
     const selectPreviousOption = (e: any) => {
         // If there is another option available before the one that is currently active, select this option.
-        if (e.target.nextElementSibling.firstChild.children[optionIndex - 1]) {
+        // Note : we check "selectedOptionRef.current" for typing reasons.
+        if (
+            e.target.nextElementSibling.firstChild.children[optionIndex - 1] &&
+            selectedOptionRef.current
+        ) {
             selectedOptionRef.current.textContent =
                 e.target.nextElementSibling.firstChild.children[
                     optionIndex - 1
@@ -160,41 +168,47 @@ const CustomButton = ({
 
     const selectLastOption = (e: any) => {
         // Select the last option.
-        selectedOptionRef.current.textContent =
-            e.target.nextElementSibling.firstChild.lastChild.textContent;
-        updateLastOptionWithIndex(e);
-        setToLastOptionIndex();
-        // Save option in hidden select (use optionsValues if available. Else use option text content)
-        hiddenSelectRef.current.firstChild.textContent =
-            e.target.nextElementSibling.firstChild.lastChild.textContent;
-        if (optionsValues) {
-            hiddenSelectRef.current.firstChild.value =
-                e.target.nextElementSibling.firstChild.lastChild.textContent.getAttribute(
-                    'data-option-value'
-                );
-        } else {
-            hiddenSelectRef.current.firstChild.value =
+        // Note : we check "selectedOptionRef.current" for typing reasons.
+        if (selectedOptionRef.current) {
+            selectedOptionRef.current.textContent =
                 e.target.nextElementSibling.firstChild.lastChild.textContent;
+            updateLastOptionWithIndex(e);
+            setToLastOptionIndex();
+            // Save option in hidden select (use optionsValues if available. Else use option text content)
+            hiddenSelectRef.current.firstChild.textContent =
+                e.target.nextElementSibling.firstChild.lastChild.textContent;
+            if (optionsValues) {
+                hiddenSelectRef.current.firstChild.value =
+                    e.target.nextElementSibling.firstChild.lastChild.textContent.getAttribute(
+                        'data-option-value'
+                    );
+            } else {
+                hiddenSelectRef.current.firstChild.value =
+                    e.target.nextElementSibling.firstChild.lastChild.textContent;
+            }
         }
     };
 
     const selectFirstOption = (e: any) => {
         // Select the first option.
-        selectedOptionRef.current.textContent =
-            e.target.nextElementSibling.firstChild.firstChild.textContent;
-        updateFirstOptionWithIndex(e);
-        setToLFirstOptionIndex();
-        // Save option in hidden select (use optionsValues if available. Else use option text content)
-        hiddenSelectRef.current.firstChild.textContent =
-            e.target.nextElementSibling.firstChild.firstChild.textContent;
-        if (optionsValues) {
-            hiddenSelectRef.current.firstChild.value =
-                e.target.nextElementSibling.firstChild.firstChild.textContent.getAttribute(
-                    'data-option-value'
-                );
-        } else {
-            hiddenSelectRef.current.firstChild.value =
+        // Note : we check "selectedOptionRef.current" for typing reasons.
+        if (selectedOptionRef.current) {
+            selectedOptionRef.current.textContent =
                 e.target.nextElementSibling.firstChild.firstChild.textContent;
+            updateFirstOptionWithIndex(e);
+            setToLFirstOptionIndex();
+            // Save option in hidden select (use optionsValues if available. Else use option text content)
+            hiddenSelectRef.current.firstChild.textContent =
+                e.target.nextElementSibling.firstChild.firstChild.textContent;
+            if (optionsValues) {
+                hiddenSelectRef.current.firstChild.value =
+                    e.target.nextElementSibling.firstChild.firstChild.textContent.getAttribute(
+                        'data-option-value'
+                    );
+            } else {
+                hiddenSelectRef.current.firstChild.value =
+                    e.target.nextElementSibling.firstChild.firstChild.textContent;
+            }
         }
     };
 
