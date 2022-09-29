@@ -23,7 +23,7 @@ const Option = styled.li<{
 
 export interface selectMenuProps {
     options: Array<string> | undefined;
-    customMenuRef: any;
+    customMenuRef: React.RefObject<HTMLUListElement>;
     handleSelectOption: any;
     width: number;
     customButtonRef: React.RefObject<HTMLSpanElement>;
@@ -132,6 +132,7 @@ const CustomMenu = ({
         >
             <ul
                 ref={customMenuRef}
+                data-testid="menu"
                 className="menu"
                 style={{
                     width: `${width}px`,

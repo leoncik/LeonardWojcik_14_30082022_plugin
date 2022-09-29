@@ -285,8 +285,13 @@ const CustomButton = ({
             aria-haspopup="true"
             aria-live="polite"
             aria-label={getAriaLabel()}
+            data-testid="custom-button"
         >
-            <span ref={selectedOptionRef} className="custom-button-text">
+            <span
+                ref={selectedOptionRef}
+                className="custom-button-text"
+                data-testid="custom-button-text"
+            >
                 {label ? label : firstOption}
             </span>
             <img
