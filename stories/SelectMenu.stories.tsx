@@ -5,7 +5,7 @@ import customIcon from './assets/colors.svg';
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
-    title: 'ReactComponentLibrary/SelectMenu',
+    title: 'HRnet plugin/SelectMenu',
     component: SelectMenu,
 } as ComponentMeta<typeof SelectMenu>;
 
