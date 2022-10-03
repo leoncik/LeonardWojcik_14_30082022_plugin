@@ -60,11 +60,24 @@ const CustomMenu = ({
     optionTextColor,
     optionTextFocus,
 }: selectMenuProps) => {
-    // Get height of the custom button to set menu position
+    // Observe height of the custom button to set menu position.
     const [customButtonHeight, setCustomButtonHeight] = useState(0);
     useEffect(() => {
-        customButtonRef.current &&
-            setCustomButtonHeight(customButtonRef.current.offsetHeight);
+        if (customButtonRef.current) {
+            const heightObserver = new ResizeObserver(() => {
+                customButtonRef.current &&
+                    setCustomButtonHeight(customButtonRef.current.offsetHeight);
+            });
+            heightObserver.observe(customButtonRef.current);
+
+            return () => {
+                if (customButtonRef.current) {
+                    heightObserver.unobserve(customButtonRef.current);
+                } else {
+                    heightObserver.disconnect();
+                }
+            };
+        }
     }, []);
 
     const closeMenu = () => {
