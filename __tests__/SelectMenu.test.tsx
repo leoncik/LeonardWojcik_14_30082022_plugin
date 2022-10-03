@@ -2,6 +2,8 @@ import React from 'react';
 import { screen, render, act } from '@testing-library/react';
 import { describe, it, expect } from 'vitest';
 import SelectMenu from '../lib/Components/SelectMenu/SelectMenu';
+// Use 'resize-observer-polyfill' to fix 'ResizeObserver is not defined'.
+global.ResizeObserver = require('resize-observer-polyfill');
 
 const mockedOptions = ['Option 1', 'Option 2', 'Option3'];
 
