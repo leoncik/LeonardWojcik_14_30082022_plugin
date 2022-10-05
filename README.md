@@ -22,7 +22,7 @@ Project carried out as part of the Front-End Web Development Career Path of Open
 
 **p14-hrnet-plugin** is a custom select menu component made specially for my [14th OpenClassrooms project](https://github.com/leoncik/LeonardWojcik_14_30082022_web-app). For this project I had to convert an old JQuery app into a React app.
 
-The old app was relying on several JQuert plugins and I had to convert one into a React component library and host It as an npm package. I decided to convert the [selectmenu](https://github.com/jquery/jquery-ui/blob/main/ui/widgets/selectmenu.js).
+The old app was relying on several JQuery plugins and I had to convert one into a React component library and host It as an npm package. I decided to convert the [selectmenu](https://github.com/jquery/jquery-ui/blob/main/ui/widgets/selectmenu.js).
 
 ### About the plugin
 
@@ -56,7 +56,7 @@ When the menu is closed, the following key commands are available:
 If you want to use this library in your (React) project, you can install It from the command line :
 
 ```
-npm install @leoncik/p14-hrnet-plugin@0.0.5
+npm install @leoncik/p14-hrnet-plugin@1.0.0
 ```
 
 Then, import the SelectMenu from the library and start using It :
