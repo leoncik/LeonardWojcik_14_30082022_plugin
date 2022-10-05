@@ -28,6 +28,8 @@ The old app was relying on several JQuert plugins and I had to convert one into 
 
 In order to convert the original plugin into a React component, I had to make some changes to follow React's philosophy. However, I tried to keep the same structure and implement all the features that were present in the original plugin. I have also added additional features that I have considered useful to add (like a scroll bar when the list of options is long).
 
+Note: the plugin will be downloaded from [this npm registry](https://www.npmjs.com/package/@leoncik/p14-hrnet-plugin) by default, but If needed you can also use It from the [GitHub Packages registry](https://github.com/users/leoncik/packages/npm/package/p14-hrnet-plugin) ([see here for more info about installing a GitHub package](https://docs.github.com/en/packages/learn-github-packages/installing-a-package))
+
 ### Keyboard interaction
 
 When the menu is open, the following key commands are available:
@@ -59,17 +61,14 @@ npm install @leoncik/p14-hrnet-plugin@0.0.5
 
 Then, import the SelectMenu from the library and start using It :
 
-```
+```jsx
 import { SelectMenu } from '@leoncik/p14-hrnet-plugin';
 
 function myComponent() {
-
     return (
         <div className="myComponent">
             <p>What is your favourite color?</p>
-            <SelectMenu
-                options={['Blue', 'Green', 'Red']}
-            />
+            <SelectMenu options={['Blue', 'Green', 'Red']} />
         </div>
     );
 }

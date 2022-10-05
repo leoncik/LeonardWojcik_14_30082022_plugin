@@ -1,7 +1,8 @@
 {
   "name": "@leoncik/p14-hrnet-plugin",
-  "version": "0.0.11",
+  "version": "0.0.13",
   "description": "A custom select menu component made for my 14th OpenClassrooms project",
+  "homepage": "https://leonard-wojcik-p14-plugin.netlify.app/",
   "main": "dist/index.js",
   "scripts": {
     "build": "rollup -c",
@@ -19,6 +20,11 @@
   ],
   "author": "leoncik",
   "license": "MIT",
+  "private": false,
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/leoncik/LeonardWojcik_14_30082022_plugin.git"
+    },
   "devDependencies": {
     "@babel/core": "^7.16.7",
     "@rollup/plugin-babel": "^5.3.0",
@@ -66,9 +72,6 @@
     "styled-components": "^5.3.5"
   },
   "dependencies": {},
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com/leoncik"
-  },
   "lint-staged": {
     "*.{tsx,ts}": "eslint --cache --fix",
     "*.{ts,tsx,css,md}": "prettier --write"
