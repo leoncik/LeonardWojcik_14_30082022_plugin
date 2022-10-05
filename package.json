@@ -1,6 +1,6 @@
 {
   "name": "@leoncik/p14-hrnet-plugin",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A custom select menu component made for my 14th OpenClassrooms project",
   "homepage": "https://leonard-wojcik-p14-plugin.netlify.app/",
   "main": "dist/index.js",

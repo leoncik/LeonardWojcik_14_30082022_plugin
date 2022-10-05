@@ -28,6 +28,7 @@ export interface selectMenuProps {
     customMenuRef: any;
     selectedOptionRef: React.RefObject<HTMLSpanElement>;
     width?: number | boolean;
+    id?: string;
     selectedOption: any;
     optionIndex: number;
     incrementOptionIndex: any;
@@ -61,6 +62,7 @@ const CustomButton = ({
     customMenuRef,
     selectedOptionRef,
     width,
+    id,
     selectedOption,
     optionIndex,
     incrementOptionIndex,
@@ -307,7 +309,7 @@ const CustomButton = ({
             aria-expanded="false"
             aria-autocomplete="list"
             aria-haspopup="true"
-            aria-owns="menu"
+            aria-owns={id ? `${id}-menu` : ''}
             aria-live="polite"
             aria-label={getAriaLabel()}
             data-testid="custom-button"

@@ -26,6 +26,7 @@ export interface selectMenuProps {
     customMenuRef: React.RefObject<HTMLUListElement>;
     handleSelectOption: any;
     width: number;
+    id?: string;
     customButtonRef: React.RefObject<HTMLSpanElement>;
     saveOption: any;
     saveOptionIndex: any;
@@ -59,6 +60,7 @@ const CustomMenu = ({
     mainColor,
     optionTextColor,
     optionTextFocus,
+    id,
 }: selectMenuProps) => {
     // Observe height of the custom button to set menu position.
     const [customButtonHeight, setCustomButtonHeight] = useState(0);
@@ -147,7 +149,7 @@ const CustomMenu = ({
                 ref={customMenuRef}
                 data-testid="menu"
                 className="menu"
-                id="menu"
+                id={id ? `${id}-menu` : ''}
                 style={{
                     width: `${width}px`,
                     maxHeight: scrollable ? `${maxHeight}px` : 'auto',
