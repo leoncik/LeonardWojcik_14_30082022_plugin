@@ -147,6 +147,7 @@ const CustomMenu = ({
                 ref={customMenuRef}
                 data-testid="menu"
                 className="menu"
+                id="menu"
                 style={{
                     width: `${width}px`,
                     maxHeight: scrollable ? `${maxHeight}px` : 'auto',

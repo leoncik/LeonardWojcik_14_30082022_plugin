@@ -86,8 +86,10 @@ const CustomButton = ({
 }: selectMenuProps) => {
     // Values
     const firstOption = options?.[0] || '';
-    // const iconPathTest = require("../../assets/chevron-down.svg") as string;
 
+    /**
+     * Opens the menu if expanded, else close It.
+     */
     const triggerMenu = () => {
         if (!customButtonRef?.current?.classList.contains('menu-expanded')) {
             openSelectMenu();
@@ -102,6 +104,12 @@ const CustomButton = ({
             : customMenuRef.current.firstChild.focus();
     };
 
+    /**
+     * When the menu is unexpanded and when selecting next option with the keyboard
+     * Update the text inside the button and the hidden option element
+     * And adjust index for keyboard navigation.
+     * @param {React.KeyboardEventHandler<HTMLSpanElement> | undefined} e - Keyboard event.
+     */
     const selectNextOption = (e: any) => {
         // If there is another option available after the one that is currently active, select this option.
         // Note : we check "selectedOptionRef.current" for typing reasons.
@@ -134,6 +142,12 @@ const CustomButton = ({
         }
     };
 
+    /**
+     * When the menu is unexpanded and when selecting previous option with the keyboard
+     * Update the text inside the button and the hidden option element
+     * And adjust index for keyboard navigation.
+     * @param {React.KeyboardEventHandler<HTMLSpanElement> | undefined} e - Keyboard event.
+     */
     const selectPreviousOption = (e: any) => {
         // If there is another option available before the one that is currently active, select this option.
         // Note : we check "selectedOptionRef.current" for typing reasons.
@@ -166,8 +180,13 @@ const CustomButton = ({
         }
     };
 
+    /**
+     * When the menu is unexpanded and when selecting the last option with the keyboard
+     * Update the text inside the button and the hidden option element
+     * And adjust index for keyboard navigation.
+     * @param {React.KeyboardEventHandler<HTMLSpanElement> | undefined} e - Keyboard event.
+     */
     const selectLastOption = (e: any) => {
-        // Select the last option.
         // Note : we check "selectedOptionRef.current" for typing reasons.
         if (selectedOptionRef.current) {
             selectedOptionRef.current.textContent =
@@ -189,8 +208,13 @@ const CustomButton = ({
         }
     };
 
+    /**
+     * When the menu is unexpanded and when selecting the first option with the keyboard
+     * Update the text inside the button and the hidden option element
+     * And adjust index for keyboard navigation.
+     * @param {React.KeyboardEventHandler<HTMLSpanElement> | undefined} e - Keyboard event.
+     */
     const selectFirstOption = (e: any) => {
-        // Select the first option.
         // Note : we check "selectedOptionRef.current" for typing reasons.
         if (selectedOptionRef.current) {
             selectedOptionRef.current.textContent =
@@ -283,6 +307,7 @@ const CustomButton = ({
             aria-expanded="false"
             aria-autocomplete="list"
             aria-haspopup="true"
+            aria-owns="menu"
             aria-live="polite"
             aria-label={getAriaLabel()}
             data-testid="custom-button"

@@ -137,15 +137,20 @@ const SelectMenu = ({
     }, []);
 
     // Save option functions
+    /**
+     * Saves the selected option (as HTMLLIElement)
+     * @param {HTMLLIElement} e Keyboard or mouse event.
+     */
     const saveOption = (e: any) => {
         setSelectedOption(e.target);
     };
 
+    /**
+     * Update the text content of the button and the value of the hidden select
+     * when selecting an option.
+     * @param e
+     */
     const handleSelectOption = (e: any) => {
-        selectOption(e);
-    };
-
-    const selectOption = (e: any) => {
         // eslint-disable-next-line  @typescript-eslint/no-non-null-assertion
         selectedOptionRef.current!.textContent = e.target.textContent;
         setHiddenOptionText(e.target.textContent);
@@ -160,37 +165,69 @@ const SelectMenu = ({
     };
 
     // Functions to handle keyboard navigation
+    /**
+     * Set option index to selected option (for keyboard navigation)
+     * @param {HTMLLIElement} e
+     */
     const saveOptionIndex = (e: any) => {
         setOptionIndex(
             Array.from(e.target.parentNode.children).indexOf(e.target)
         );
     };
+    /**
+     * Increment option index (for keyboard navigation)
+     */
     const incrementOptionIndex = () => {
         setOptionIndex(optionIndex + 1);
     };
+    /**
+     * Decrement option index (for keyboard navigation)
+     */
     const decrementOptionIndex = () => {
         setOptionIndex(optionIndex - 1);
     };
+    /**
+     * Set option index to last option (for keyboard navigation)
+     */
     const setToLastOptionIndex = () => {
         setOptionIndex(options.length - 1);
     };
+    /**
+     * Set option index to first option (for keyboard navigation)
+     */
     const setToLFirstOptionIndex = () => {
         setOptionIndex(0);
     };
 
+    /**
+     * Saves the next option (as HTMLLIElement)
+     * @param {HTMLLIElement} e
+     */
     const updateNextOptionWithIndex = (e: any) => {
         setSelectedOption(
             e.target.nextElementSibling.firstChild.children[optionIndex + 1]
         );
     };
+    /**
+     * Saves the previous option (as HTMLLIElement)
+     * @param {HTMLLIElement} e
+     */
     const updatePreviousOptionWithIndex = (e: any) => {
         setSelectedOption(
             e.target.nextElementSibling.firstChild.children[optionIndex - 1]
         );
     };
+    /**
+     * Saves the last option (as HTMLLIElement)
+     * @param {HTMLLIElement} e
+     */
     const updateLastOptionWithIndex = (e: any) => {
         setSelectedOption(e.target.nextElementSibling.firstChild.lastChild);
     };
+    /**
+     * Saves the first option (as HTMLLIElement)
+     * @param {HTMLLIElement} e
+     */
     const updateFirstOptionWithIndex = (e: any) => {
         setSelectedOption(e.target.nextElementSibling.firstChild.firstChild);
     };
