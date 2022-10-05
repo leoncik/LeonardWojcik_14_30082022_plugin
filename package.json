@@ -1,6 +1,6 @@
 {
   "name": "@leoncik/p14-hrnet-plugin",
-  "version": "0.0.10",
+  "version": "0.0.11",
   "description": "A custom select menu component made for my 14th OpenClassrooms project",
   "main": "dist/index.js",
   "scripts": {

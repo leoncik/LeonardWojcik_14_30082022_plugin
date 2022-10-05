@@ -174,6 +174,7 @@ const CustomMenu = ({
                         data-option-value={
                             optionsValues ? optionsValues[index] : option
                         }
+                        data-testid="menu-item"
                     >
                         {option}
                     </Option>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { screen, render, act } from '@testing-library/react';
+import { screen, render } from '@testing-library/react';
 import { describe, it, expect } from 'vitest';
 import SelectMenu from '../lib/Components/SelectMenu/SelectMenu';
 // Use 'resize-observer-polyfill' to fix 'ResizeObserver is not defined'.
@@ -25,18 +25,23 @@ describe("Testing menu's visibility", () => {
     it('should not be opened by default', () => {
         render(<SelectMenu options={mockedOptions} label="Pick an option:" />);
         const menu = screen.getByTestId('menu');
-        expect(menu.classList.contains('menu-expanded')).not.toBe(true);
+        expect(menu.classList.contains('menu-open')).not.toBe(true);
     });
 
-    it('should not be opened after clicking on button', () => {
+    it('should be opened after clicking on button', () => {
         render(<SelectMenu options={mockedOptions} label="Pick an option:" />);
         const button = screen.getByTestId('custom-button');
-        act(() => {
-            /* fire events that update state */
-            button.click();
-            // fireEvent.click(button);
+        button.click();
+        const menu = screen.getByTestId('menu');
+        expect(menu.classList.contains('menu-open')).toBe(true);
+    });
+});
+
+describe("Testing menu's options display", () => {
+    it('should display all provided options', () => {
+        render(<SelectMenu options={mockedOptions} label="Pick an option:" />);
+        screen.getAllByTestId('menu-item').map((option, index) => {
+            expect(option.textContent).toBe(mockedOptions[index]);
         });
-        // const menu = screen.getByTestId("menu");
-        // expect(menu.classList.contains('menu-expanded')).toBe(true)
     });
 });
