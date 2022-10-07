@@ -28,7 +28,7 @@ The old app was relying on several JQuery plugins and I had to convert one into 
 
 In order to convert the original plugin into a React component, I had to make some changes to follow React's philosophy. However, I tried to keep the same structure and implement all the features that were present in the original plugin. I have also added additional features that I have considered useful to add (like a scroll bar when the list of options is long).
 
-Note: the plugin will be downloaded from [this npm registry](https://www.npmjs.com/package/@leoncik/p14-hrnet-plugin) by default, but If needed you can also use It from the [GitHub Packages registry](https://github.com/users/leoncik/packages/npm/package/p14-hrnet-plugin) ([see here for more info about installing a GitHub package](https://docs.github.com/en/packages/learn-github-packages/installing-a-package))
+Note: the plugin has been published on the npm registry. You can find It's page here if needed: https://www.npmjs.com/package/@leoncik/p14-hrnet-plugin.
 
 ### Keyboard interaction
 
@@ -56,7 +56,7 @@ When the menu is closed, the following key commands are available:
 If you want to use this library in your (React) project, you can install It from the command line :
 
 ```
-npm install @leoncik/p14-hrnet-plugin@1.0.0
+npm i @leoncik/p14-hrnet-plugin
 ```
 
 Then, import the SelectMenu from the library and start using It :
